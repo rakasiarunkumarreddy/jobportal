@@ -1,0 +1,106 @@
+/* General header styling */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+/* Logo */
+.logo {
+  flex: 1; /* Ensures the logo takes minimum space */
+}
+
+.logo-img {
+  height: 40px;
+}
+
+/* Centered Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 2; /* Centers the search bar and gives it more space */
+}
+
+.search-input {
+  padding: 5px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-button {
+  padding: 5px 10px;
+  margin-left: 5px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+/* User Info and Buttons */
+.nav-buttons {
+  flex: 1; /* Ensures the user buttons take minimum space */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.user-img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* User Details Dropdown */
+.user-details {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  text-align: center;
+}
+
+.name {
+  font-weight: bold;
+  margin: 0;
+}
+
+.email {
+  margin: 5px 0;
+  font-size: 0.9em;
+  color: gray;
+}
+
+.signout-button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #dc3545;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.signout-button:hover {
+  background-color: #c82333;
+}
+.logo-img{
+  height:60px;
+  width:100px
+}
