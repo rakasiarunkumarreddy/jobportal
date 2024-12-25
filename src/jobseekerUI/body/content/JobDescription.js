@@ -1,42 +1,43 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { db2, ref, get } from '../../../firebase';
 import './jobDescription.css';
 
 const JobDescription = () => {
-  const { id } = useParams(); // Extract job ID from the URL
-  const location = useLocation();
-  const [job, setJob] = useState(location.state || null); // Get the job data passed through state
+  const [jobDetails, setJobDetails] = useState(null);
+  const { id: jobId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // If job data is not passed through state, fetch it from the database
-    if (!job) {
-      const fetchJobDetails = async () => {
-        const jobRef = ref(db2, `jobpostingData/${id}`);
-        const snapshot = await get(jobRef);
-        if (snapshot.exists()) {
-          setJob({ ...snapshot.val(), id }); // Set the fetched job data
-        } else {
-          console.log('No data found for this job');
-        }
-      };
+    const fetchJobDetails = async () => {
+      const jobRef = ref(db2, `jobpostingData/${jobId}`);
+      const snapshot = await get(jobRef);
+      if (snapshot.exists()) {
+        setJobDetails(snapshot.val());
+      } else {
+        console.log('No data available');
+      }
+    };
 
-      fetchJobDetails();
-    }
-  }, [id, job]); // Dependency array ensures data is fetched if the job is not in state
+    fetchJobDetails();
+  }, [jobId]);
 
-  if (!job) {
+  if (!jobDetails) {
     return <p>Loading job details...</p>;
   }
 
   return (
-    <div className="job-description">
-      <h1>Job Title: {job.jobTitle}</h1>
-      <h4>Company: {job.companyName}</h4>
-      <p>Location: {job.location}</p>
-      <p>Date: {job.postDate}</p>
-      <p>Skills: {job.skills}</p>
-      <p>Description: {job.description}</p>
+    <div className="jobDescription">
+      <div className="header">
+        <h1>{jobDetails.jobTitle}</h1>
+        <button className="applyButton" onClick={() => navigate(`/submit-details`)}>Apply</button>
+      </div>
+      <p>Company: {jobDetails.companyName}</p>
+      <p>Description: {jobDetails.jobDescription}</p>
+      <p>JobType: {jobDetails.jobType}</p>
+      <p>Location: {jobDetails.location}</p>
+      <p>Date: {jobDetails.postDate}</p>
+      <p>Skills: {jobDetails.skills}</p>
     </div>
   );
 };

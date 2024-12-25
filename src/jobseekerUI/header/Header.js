@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Header.css';  // Importing the custom CSS for styling
 import Logo from "../../images/Job portal.jpg"
+import { useNavigate } from "react-router-dom";
+
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,6 +22,9 @@ function Header() {
       reader.readAsDataURL(file);
     }
   };
+
+    const navigate = useNavigate();
+  
 
   return (
     <header className="header">
@@ -65,7 +70,10 @@ function Header() {
               </label>
             </div>
             {/* Sign Out */}
-            <div className="menu-item" onClick={() => console.log('Sign out clicked')}>
+            <div className="menu-item" onClick={() => {
+                  navigate("/job-seeker/login"); 
+
+            }}>
               Sign Out
             </div>
           </div>

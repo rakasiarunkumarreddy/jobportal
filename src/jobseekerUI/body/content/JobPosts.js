@@ -1,4 +1,6 @@
+// src/jobseekerUI/body/content/JobPosts.js
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { db2, ref, get } from '../../../firebase';
 import './jobPosts.css';
 
@@ -30,19 +32,20 @@ const JobPosts = () => {
       <h1>Job Seekers</h1>
       <div className="posts">
         {jobSeekers.length === 0 ? (
-          <p>Loading job seekers...</p>
+          <p>No job seekers found</p>
         ) : (
           jobSeekers.map((seeker) => (
             <div className="jobPosts" key={seeker.id}>
               <h4>Company: {seeker.companyName}</h4>
               <h2>Job Title: {seeker.jobTitle}</h2>
-              <div style={{}}>
+              <div>
                 <p>Location: {seeker.location}</p>
                 <p>Date: {seeker.postDate}</p>
               </div>
               <p>Skills: {seeker.skills}</p>
-              {/* Apply button without functionality */}
-              <button>Apply</button>
+              <Link to={`/job-seeker/ui/job-description/${seeker.id}`}>
+                <button>Apply</button>
+              </Link>
             </div>
           ))
         )}

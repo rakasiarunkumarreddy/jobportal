@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, get } from 'firebase/database'; // Correct imports for Firebase v9+
+import { getDatabase, ref, get, push } from 'firebase/database'; // Add push to the import
 
 // Configuration for the first Firebase app
 const firebaseConfig1 = {
@@ -31,4 +31,4 @@ const app2 = initializeApp(firebaseConfig2, "app2");
 const db1 = getDatabase(app1);
 const db2 = getDatabase(app2);
 
-export { db1, db2, ref, get }; // Export both database instances along with ref and get
+export { db1, db2, ref, get, push }; // Export both database instances along with ref, get, and push

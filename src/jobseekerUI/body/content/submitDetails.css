@@ -1,0 +1,66 @@
+/* src/jobseekerUI/body/content/submitDetails.css */
+
+.submitDetails {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .submitDetails h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .submitDetails form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .submitDetails label {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .submitDetails input[type="text"],
+  .submitDetails input[type="email"],
+  .submitDetails input[type="tel"],
+  .submitDetails input[type="file"],
+  .submitDetails input[type="radio"],
+  .submitDetails input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .submitDetails input[type="radio"] {
+    width: auto;
+    margin-right: 10px;
+  }
+  
+  .submitDetails input[type="file"] {
+    padding: 3px;
+  }
+  
+  .submitDetails button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .submitDetails button:hover {
+    background-color: #0056b3;
+  }
+  
