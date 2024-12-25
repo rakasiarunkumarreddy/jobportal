@@ -36,7 +36,7 @@ const JobPosts = () => {
             <div className="jobPosts" key={seeker.id}>
               <h4>Company: {seeker.companyName}</h4>
               <h2>Job Title: {seeker.jobTitle}</h2>
-              <div>
+              <div style={{}}>
                 <p>Location: {seeker.location}</p>
                 <p>Date: {seeker.postDate}</p>
               </div>

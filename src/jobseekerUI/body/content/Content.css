@@ -3,7 +3,7 @@
   display: grid;
   grid-template-cols: 20% 80%; /* CardCarousal 20%, JobPosts 80% */
   height: 100%; /* Ensures it fills the height of the parent container */
-  gap: 10px; /* Optional: Adds space between CardCarousal and JobPosts */
+  gap: 0px; /* Optional: Adds space between CardCarousal and JobPosts */
   padding: 10px; /* Optional: Adds padding inside the Content */
   box-sizing: border-box; /* Includes padding in total dimensions */
   background-color: #f8f9fa; /* Example background color */
@@ -22,4 +22,5 @@
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds shadow for a card-like effect */
   overflow-y: auto; /* Ensures scrolling if content overflows */
+  scrollbarWidth: "thin"
 }

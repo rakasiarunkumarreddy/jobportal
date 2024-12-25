@@ -1,86 +1,78 @@
-/* src/content/jobPosts.css */
-
-/* Styles for the container holding all the posts */
+/* jobPosts.css */
 .posts {
-    display: flex;
-    flex-wrap: wrap; /* Allow items to wrap onto the next line */
-    gap: 20px; /* Adds space between cards */
-    padding: 20px;
-    margin-top: 20px;
-  }
-  
-  /* Styles for individual job post containers */
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap if necessary */
+  justify-content: space-around;
+  gap: 10px; /* Spacing between cards */
+}
+
+.jobPosts {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  width: 30%; /* 3 cards in a row */
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation for card hover */
+}
+
+.jobPosts:hover {
+  transform: translateY(-10px); /* Slightly move the card upwards */
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
+}
+
+.jobPosts h4, .jobPosts h2, .jobPosts p {
+  margin: 10px 0;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Button animation */
+}
+
+button:hover {
+  background-color: #45a049;
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Different button colors for variation */
+button.primary {
+  background-color: #007BFF; /* Blue */
+}
+
+button.primary:hover {
+  background-color: #0056b3;
+}
+
+button.secondary {
+  background-color: #ff6347; /* Tomato red */
+}
+
+button.secondary:hover {
+  background-color: #e53e2f;
+}
+
+button.danger {
+  background-color: #dc3545; /* Red */
+}
+
+button.danger:hover {
+  background-color: #bd2130;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .jobPosts {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adds a soft shadow for a card-like effect */
-    border: 1px solid #ddd; /* Adds a subtle border around the job post */
-    width: 30%; /* Each card will take up 30% of the width, leaving space for three per row */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition on hover */
+    width: 48%; /* 2 cards per row on smaller screens */
   }
-  
-  /* Hover effect to highlight job posts */
-  .jobPosts:hover {
-    transform: translateY(-5px); /* Lift the card a little */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+@media (max-width: 480px) {
+  .jobPosts {
+    width: 100%; /* 1 card per row on very small screens */
   }
-  
-  /* Styles for the job post heading */
-  .jobPosts h4 {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 8px;
-  }
-  
-  /* Job title styling */
-  .jobPosts h2 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 12px;
-  }
-  
-  /* Paragraph styling for location, date, and skills */
-  .jobPosts p {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 10px;
-  }
-  
-  /* Styles for the "Apply" button */
-  .jobPosts button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth transition on hover */
-  }
-  
-  /* Change button color on hover */
-  .jobPosts button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Optional: Add responsive styles for smaller screens */
-  @media (max-width: 1024px) {
-    .jobPosts {
-      width: 48%; /* On smaller screens (tablets), show two cards per row */
-      padding: 15px;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .jobPosts {
-      width: 100%; /* For smaller screens (mobile), show one card per row */
-      padding: 15px;
-    }
-  
-    .jobPosts button {
-      width: 100%;
-      padding: 12px;
-    }
-  }
-  
+}
