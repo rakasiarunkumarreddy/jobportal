@@ -49,7 +49,7 @@ function Header() {
       {/* Profile Image */}
       <div className="header-profile">
         <img
-          src={userImage || "https://via.placeholder.com/40"}  // Default profile image if not uploaded
+          src={userImage || "https://tinyurl.com/2dnywp4w"}  // Default profile image if not uploaded
           alt="User Avatar"
           className="profile-avatar"
           onClick={handleMenuToggle}

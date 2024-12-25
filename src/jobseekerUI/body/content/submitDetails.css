@@ -7,6 +7,13 @@
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .submitDetails:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
   
   .submitDetails h1 {
@@ -38,6 +45,17 @@
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .submitDetails input[type="text"]:focus,
+  .submitDetails input[type="email"]:focus,
+  .submitDetails input[type="tel"]:focus,
+  .submitDetails input[type="file"]:focus,
+  .submitDetails input[type="radio"]:focus,
+  .submitDetails input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
   }
   
   .submitDetails input[type="radio"] {
@@ -49,18 +67,77 @@
     padding: 3px;
   }
   
-  .submitDetails button {
+  .submitDetails .submitButton {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color:rgb(8, 8, 8); /* Tomato */
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s ease;
+    animation: bounce 0.5s ease-in-out infinite alternate;
   }
   
-  .submitDetails button:hover {
-    background-color: #0056b3;
+  .submitDetails .submitButton:hover {
+    background-color:rgb(36, 34, 33); /* Darker Tomato */
+  }
+  
+  .submitDetails .goHomeButton {
+    padding: 10px 20px;
+    background-color:rgb(112, 69, 112); /* Purple */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    animation: pulse 1s infinite;
+  }
+  
+  .submitDetails .goHomeButton:hover {
+    background-color:rgb(126, 85, 155); /* Darker Purple */
+  }
+  
+  /* New CSS for the top confirmation button */
+  .topConfirmation {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #800080;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    z-index: 1000; /* Ensure it is on top of other elements */
+    animation: slideDown 0.5s ease;
+  }
+  
+  @keyframes bounce {
+    to {
+      transform: translateY(-10px);
+    }
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
   }
   

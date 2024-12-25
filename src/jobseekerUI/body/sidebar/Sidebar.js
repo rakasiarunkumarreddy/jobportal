@@ -75,7 +75,7 @@ const Sidebar = ({ onApplyFilters, onRemoveFilters }) => {
 
       <div className="apply-filters">
         <button onClick={applyFilters}>Apply Filters</button>
-        <button onClick={removeFilters}>Remove Filters</button>
+        <button className="remove-button" onClick={removeFilters}>Remove Filters</button>
       </div>
     </div>
   );

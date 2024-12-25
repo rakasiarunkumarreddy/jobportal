@@ -17,7 +17,7 @@
 
 .jobPosts:hover {
   transform: translateY(-10px); /* Slightly move the card upwards */
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
+  box-shadow: 0px 5px 10px rgb(40, 59, 92) /* Add shadow on hover */
 }
 
 .jobPosts h4, .jobPosts h2, .jobPosts p {
@@ -25,17 +25,17 @@
 }
 
 button {
-  background-color: #4CAF50;
+  background-color:rgb(40, 59, 92);
   color: white;
   padding: 10px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease; /* Button animation */
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color:rgb(3, 3, 3);
   transform: scale(1.1); /* Slight zoom effect on hover */
 }
 

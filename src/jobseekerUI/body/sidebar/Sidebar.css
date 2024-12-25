@@ -1,8 +1,10 @@
+/* src/jobseekerUI/body/sidebar/Sidebar.css */
+
 .sidebar {
   background-color: #f4f4f4;
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  overflow-y:auto;
+  overflow-y: auto;
 }
 
 .filters {
@@ -26,20 +28,36 @@
 }
 
 .apply-filters {
-  text-align: center;
+  display: flex; /* Use flexbox to arrange buttons side by side */
+  justify-content: space-between; /* Add space between the buttons */
   margin-top: 20px;
 }
 
 .apply-filters button {
-  background-color: #007bff;
-  color: white;
-  border: none;
   padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
+  font-size: 12px;
+  border-radius: 20px;
   cursor: pointer;
+  border: none;
+  transition: background-color 0.3s, transform 0.3s; /* Add transition for animation */
 }
 
-.apply-filters button:hover {
-  background-color: #0056b3;
+.apply-filters .apply-button {
+  background-color: #007bff; /* Blue */
+  color: white;
+}
+
+.apply-filters .apply-button:hover {
+  background-color: #0056b3; /* Darker blue */
+  transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+.apply-filters .remove-button {
+  background-color: #d32f2f; /* Red */
+  color: white;
+}
+
+.apply-filters .remove-button:hover {
+  background-color: #b71c1c; /* Darker red */
+  transform: scale(1.05); /* Slightly increase size on hover */
 }

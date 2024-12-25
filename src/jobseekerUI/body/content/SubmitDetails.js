@@ -45,6 +45,11 @@ const SubmitDetails = () => {
 
   return (
     <div className="submitDetails">
+      {showMessage && (
+        <div className="topConfirmation">
+          <button className="goHomeButton" onClick={handleGoHome}>Go to Home</button>
+        </div>
+      )}
       <h1>Submit Details</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -82,13 +87,10 @@ const SubmitDetails = () => {
           Experience:
           <input type="text" name="experience" value={formData.experience} onChange={handleChange} required />
         </label>
-        <button type="submit">Submit</button>
+        <button type="submit" className="submitButton">Submit</button>
       </form>
       {showMessage && (
-        <>
-          <div className="confirmationMessage">Form submitted successfully!</div>
-          <button className="goHomeButton" onClick={handleGoHome}>Go to Home</button>
-        </>
+        <div className="confirmationMessage">Form submitted successfully!</div>
       )}
     </div>
   );
