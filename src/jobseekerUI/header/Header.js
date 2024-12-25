@@ -1,52 +1,78 @@
 import React, { useState } from 'react';
-import './Header.css';
+import './Header.css';  // Importing the custom CSS for styling
 import Logo from "../../images/Job portal.jpg"
 
+function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [userImage, setUserImage] = useState(null); // State to store the uploaded image
 
-const Header = () => {
-  const [showDetails, setShowDetails] = useState(false);
+  const handleMenuToggle = () => {
+    setMenuOpen((prev) => !prev);
+  };
 
-  const handleImageClick = () => {
-    setShowDetails(!showDetails);
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setUserImage(e.target.result); // Set the image as a data URL
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
     <header className="header">
       {/* Logo */}
-      <div className="logo">
-        <img src={Logo} alt="Logo" className="logo-img" />
-      </div>
-
-      {/* Search Bar */}
-      <div className="search-bar">
-        <input type="text" placeholder="Search..." className="search-input" />
-        <button className="search-button">Search</button>
-      </div>
-
-      {/* User Info */}
-      <div className="nav-buttons">
-        <img 
-          src="user.png" 
-          alt="User" 
-          className="user-img" 
-          onClick={handleImageClick} 
+      <div className="header-logo">
+        <img
+          src={Logo}  // Replace with your actual logo path
+          alt="Job Portal Logo"
         />
       </div>
 
-      {/* User Details */}
-      {showDetails && (
-        <div className="user-details">
-          <div className="details">
-            <p className="name">John Doe</p>
-            <p className="email">john.doe@example.com</p>
+      {/* Centered Search Section */}
+      <div className="header-search-container">
+        <input
+          type="text"
+          className="search-bar"
+          placeholder="Search..."
+        />
+        <button className="search-button">Search</button>
+      </div>
+
+      {/* Profile Image */}
+      <div className="header-profile">
+        <img
+          src={userImage || "https://via.placeholder.com/40"}  // Default profile image if not uploaded
+          alt="User Avatar"
+          className="profile-avatar"
+          onClick={handleMenuToggle}
+        />
+        {menuOpen && (
+          <div className="menu">
+            {/* Upload Image */}
+            <div className="menu-item">
+              <label htmlFor="upload-image">
+                Upload Image
+                <input
+                  id="upload-image"
+                  type="file"
+                  accept="image/*"
+                  style={{ display: 'none' }}
+                  onChange={handleImageUpload}
+                />
+              </label>
+            </div>
+            {/* Sign Out */}
+            <div className="menu-item" onClick={() => console.log('Sign out clicked')}>
+              Sign Out
+            </div>
           </div>
-          <button className="signout-button" onClick={() => alert('Signed Out')}>
-            Sign Out
-          </button>
-        </div>
-      )}
+        )}
+      </div>
     </header>
   );
-};
+}
 
 export default Header;

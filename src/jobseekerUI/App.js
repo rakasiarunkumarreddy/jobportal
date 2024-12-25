@@ -1,16 +1,16 @@
-import React from 'react'
-import Header from './header/Header'
-import Sidebar from './navbar/Sidebar'
-import Body from './body/body'
+// src/App.js
+import React from 'react';
+import Header from './header/Header';
+import Body from './body/body';
+import './App.css';
 
 const App = () => {
   return (
-    <div>
-      <Header/>
-      <Sidebar/>
-      <Body/>
+    <div className="app-container">
+      <Header />
+      <Body />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
