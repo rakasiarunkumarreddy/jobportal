@@ -1,0 +1,150 @@
+/* src/jobseekerUI/body/sidebar/Sidebar.css */
+
+.sidebar {
+  background-color: #f4f4f4;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.filters {
+  margin-bottom: 20px;
+}
+
+.filter-section {
+  margin-bottom: 20px;
+}
+
+.filter-section h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.filter-section label {
+  display: block; /* Ensures labels are displayed line by line */
+  margin-bottom: 5px; /* Adds spacing between the labels */
+  font-size: 14px;
+}
+
+.apply-filters {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.apply-filters button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.apply-filters button:hover {
+  background-color: #0056b3;
+}
+
+.remove-button {
+  background-color: #d32f2f;
+}
+
+.remove-button:hover {
+  background-color: #b71c1c;
+}
+
+/* src/jobseekerUI/body/content/jobPosts.css */
+
+.container {
+  display: flex;
+}
+
+.sidebar {
+  flex: 1;
+  background-color: #f4f4f4;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.content {
+  flex: 3;
+  padding: 20px;
+}
+
+.posts {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.jobPosts {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  flex-basis: 30%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* General styles for the carousel container */
+.cardCarousal {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  border: 0px solid pink;
+  border-radius: 20px;
+  padding: 10px;
+  overflow-x: auto;
+  width: 100%;
+  max-width: 1050px;
+  margin: auto;
+}
+
+/* Hide the scrollbar for Webkit browsers (Chrome, Safari, Edge) */
+.cardCarousal::-webkit-scrollbar {
+  display: none; /* Hides the scrollbar */
+}
+
+/* Hide the scrollbar for Firefox */
+.cardCarousal {
+  scrollbar-width: none; /* Firefox: hides the scrollbar */
+}
+
+/* Individual card styles */
+.card {
+  border: 1px solid blue;
+  padding: 0;
+  border-radius: 20px;
+  margin: 0;
+  min-width: 300px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease; /* Smooth scaling effect on hover */
+}
+
+/* Card image styles */
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the card while maintaining aspect ratio */
+  object-position: center;
+  transition: transform 0.3s ease; /* Smooth zoom effect on hover */
+}
+
+/* Hover effect for the image */
+.card:hover img {
+  transform: scale(1.1); /* Zoom in on hover */
+}
+
+/* Animation for horizontal scrolling (optional) */
+@keyframes scrollAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

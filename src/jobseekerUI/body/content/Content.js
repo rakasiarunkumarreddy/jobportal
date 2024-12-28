@@ -1,7 +1,7 @@
 import React from "react";
 import "./Content.css";
-import CardCarousal from "./cardCarousal";
-import JobPosts from "./JobPosts";
+import CardCarousal from "./cardCarousals/cardCarousal";
+import JobPosts from "./jobPosts/JobPosts";
 
 function Content() {
   return (

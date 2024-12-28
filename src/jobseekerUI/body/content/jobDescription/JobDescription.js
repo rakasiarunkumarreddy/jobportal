@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { db2, ref, get } from '../../../firebase';
+import { db2, ref, get } from '../../../../firebase';
 import './jobDescription.css';
 
 const JobDescription = () => {

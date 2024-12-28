@@ -1,6 +1,6 @@
 // src/components/JobSeekerUI.js
 import React from "react";
-import App from "../jobseekerUI/App"
+import App from "../jobseekerUI/JSApp"
 
 const JobSeekerUI = () => {
   return (
@@ -9,7 +9,4 @@ const JobSeekerUI = () => {
     </div>
   );
 };
-
-
-
 export default JobSeekerUI;

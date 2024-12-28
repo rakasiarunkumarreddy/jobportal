@@ -7,9 +7,9 @@ import JobSeekerSignup from "./components/JobSeekerSignup";
 import JobSeekerLogin from "./components/JobSeekerLogin";
 import HiringManagerUI from "./components/HiringManagerUI";
 import JobSeekerUI from "./components/JobSeekerUI";
-import JobPosts from "./jobseekerUI/body/content/JobPosts";
-import JobDescription from "./jobseekerUI/body/content/JobDescription";
-import SubmitDetails from "./jobseekerUI/body/content/SubmitDetails";
+import JobPosts from "./jobseekerUI/body/content/jobPosts/JobPosts"; // Corrected path
+import JobDescription from "./jobseekerUI/body/content/jobDescription/JobDescription"; // Corrected path
+import SubmitDetails from "./jobseekerUI/body/content/jobDescription/submitDetails/SubmitDetails"; // Corrected path
 
 const App = () => {
   return (

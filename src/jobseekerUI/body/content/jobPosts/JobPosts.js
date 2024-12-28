@@ -1,7 +1,7 @@
 // src/jobseekerUI/body/content/JobPosts.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { db2, ref, get } from '../../../firebase';
+import { db2, ref, get } from '../../../../firebase';
 import './jobPosts.css';
 
 const JobPosts = () => {

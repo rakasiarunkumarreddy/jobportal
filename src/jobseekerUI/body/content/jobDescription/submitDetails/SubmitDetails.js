@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { db1, ref, push } from '../../../firebase';
+import { db1, ref, push } from '../../../../../firebase';
 import './submitDetails.css';
 
 const SubmitDetails = () => {
@@ -97,3 +97,5 @@ const SubmitDetails = () => {
 };
 
 export default SubmitDetails;
+
+

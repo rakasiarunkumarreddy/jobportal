@@ -2,7 +2,7 @@
 import React from 'react';
 import Header from './header/Header';
 import Body from './body/body';
-import './App.css';
+import './JSApp.css';
 
 const App = () => {
   return (
