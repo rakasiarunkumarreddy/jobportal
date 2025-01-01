@@ -45,7 +45,7 @@ function Header() {
         />
         <button className="search-button">Search</button>
       </div> */}
-      <div style={{fontSize:"10px"}}><h1>JOB PORTAL</h1></div>
+      <div className="title" style={{fontSize:"10px",color:"orange"}}><h1>JOB PORTAL</h1></div>
 
       {/* Profile Image */}
       <div className="header-profile">

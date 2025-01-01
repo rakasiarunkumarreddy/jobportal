@@ -6,7 +6,7 @@
   border: 0px solid pink;
   overflow-x: auto; /* Enable horizontal scrolling */
   width: 100%;
-  max-width: 1340px;
+  max-width: 1370px;
   margin: auto;
   scroll-snap-type: x mandatory; /* Add scroll snap to improve user experience */
 }

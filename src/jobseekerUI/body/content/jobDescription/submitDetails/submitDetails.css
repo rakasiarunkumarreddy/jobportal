@@ -1,8 +1,8 @@
 /* src/jobseekerUI/body/content/submitDetails.css */
 
 .submitDetails {
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 400px;
+    margin: 20px auto;
     padding: 20px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -39,7 +39,7 @@
   .submitDetails input[type="file"],
   .submitDetails input[type="radio"],
   .submitDetails input[type="text"] {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 20px;
@@ -68,7 +68,7 @@
   }
   
   .submitDetails .submitButton {
-    width: 100%;
+    width: 40%;
     padding: 10px;
     background-color:rgb(8, 8, 8); /* Tomato */
     color: white;
@@ -114,11 +114,7 @@
     animation: slideDown 0.5s ease;
   }
   
-  @keyframes bounce {
-    to {
-      transform: translateY(-10px);
-    }
-  }
+
   
   @keyframes pulse {
     0% {
@@ -141,3 +137,16 @@
     }
   }
   
+  
+
+  @media(max-width:425px){
+    .submitDetails{
+      padding:20px
+    }
+  }
+
+  @media(max-width:320px){
+    .submitDetails{
+      padding:20px
+    }
+  }
