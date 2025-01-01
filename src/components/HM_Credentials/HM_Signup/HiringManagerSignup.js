@@ -1,6 +1,8 @@
+// src/components/HiringManagerSignup.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./HiringManagerSignup.css"; // Import the CSS file
 
 const HiringManagerSignup = () => {
   const [formData, setFormData] = useState({
@@ -9,7 +11,8 @@ const HiringManagerSignup = () => {
     phone: "",
     company: "",
     password: "",
-    role: "Hiring Manager", 
+    confirmPassword: "",
+    role: "Hiring Manager",
   });
 
   const navigate = useNavigate();
@@ -24,6 +27,11 @@ const HiringManagerSignup = () => {
 
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
     try {
       const response = await axios.post(
         "https://jobseeker-application-default-rtdb.firebaseio.com/hiringManagers.json",
@@ -31,7 +39,7 @@ const HiringManagerSignup = () => {
       );
       console.log("Data submitted:", response.data);
       alert("Signup successful!");
-      navigate("/hiring-manager/login"); 
+      navigate("/hiring-manager/login");
     } catch (error) {
       console.error("Error submitting data:", error);
       alert("Signup failed! Please try again.");
@@ -43,12 +51,12 @@ const HiringManagerSignup = () => {
   };
 
   return (
-    <div style={styles.signupContainer}>
-      <div style={styles.formContainerSignup}>
-        <h2 style={styles.formTitle}>Hiring Manager Signup</h2>
+    <div className="signupContainer">
+      <div className="formContainerSignup">
+        <h2 className="formTitle">Hiring Manager Signup</h2>
         <form onSubmit={handleSignupSubmit}>
           <input
-            style={styles.inputField}
+            className="inputField"
             type="text"
             name="name"
             placeholder="Name"
@@ -57,7 +65,7 @@ const HiringManagerSignup = () => {
             required
           />
           <input
-            style={styles.inputField}
+            className="inputField"
             type="email"
             name="email"
             placeholder="Email"
@@ -66,7 +74,7 @@ const HiringManagerSignup = () => {
             required
           />
           <input
-            style={styles.inputField}
+            className="inputField"
             type="text"
             name="phone"
             placeholder="Phone"
@@ -75,7 +83,7 @@ const HiringManagerSignup = () => {
             required
           />
           <input
-            style={styles.inputField}
+            className="inputField"
             type="text"
             name="company"
             placeholder="Company Name"
@@ -84,7 +92,7 @@ const HiringManagerSignup = () => {
             required
           />
           <input
-            style={styles.inputField}
+            className="inputField"
             type="password"
             name="password"
             placeholder="Password"
@@ -92,100 +100,28 @@ const HiringManagerSignup = () => {
             onChange={handleSignupChange}
             required
           />
-          <button style={styles.submitBtn} type="submit">
+          <input
+            className="inputField"
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            value={formData.confirmPassword}
+            onChange={handleSignupChange}
+            required
+          />
+          <button className="submitBtn" type="submit">
             Submit
           </button>
         </form>
-        <p style={styles.loginPrompt}>
-          Already a user? <button style={styles.linkButton} onClick={goToLoginPage}>Login</button>
+        <p className="loginPrompt">
+          Already a user?{" "}
+          <button className="linkButton" onClick={goToLoginPage}>
+            Login
+          </button>
         </p>
       </div>
     </div>
   );
 };
-
-const styles = {
-  signupContainer: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
-    backgroundColor: "#f8f9fa",
-    animation: "fadeIn 1.5s ease-in-out",
-  },
-  formContainerSignup: {
-    width: "40%",
-    padding: "20px",
-    borderRadius: "10px",
-    backgroundColor: "#fff",
-    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-    animation: "slideIn 1s ease-in-out",
-  },
-  formTitle: {
-    fontSize: "24px",
-    color: "#333",
-    marginBottom: "20px",
-    textAlign: "center",
-  },
-  inputField: {
-    width: "100%",
-    padding: "12px",
-    marginBottom: "15px",
-    border: "2px solid #ddd",
-    borderRadius: "8px",
-    transition: "all 0.3s ease",
-  },
-  submitBtn: {
-    width: "100%",
-    padding: "12px",
-    backgroundColor: "#4b8e8d",
-    color: "#fff",
-    fontSize: "16px",
-    border: "none",
-    borderRadius: "8px",
-    cursor: "pointer",
-    transition: "all 0.3s ease",
-  },
-  loginPrompt: {
-    marginTop: "10px",
-    textAlign: "center",
-    color: "#555",
-  },
-  linkButton: {
-    background: "none",
-    border: "none",
-    color: "#007bff",
-    textDecoration: "underline",
-    cursor: "pointer",
-  },
-};
-
-const keyFrames = `
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @keyframes slideIn {
-    0% {
-      opacity: 0;
-      transform: translateX(-50px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-`;
-
-const styleTag = document.createElement("style");
-styleTag.innerHTML = keyFrames;
-document.head.appendChild(styleTag);
 
 export default HiringManagerSignup;

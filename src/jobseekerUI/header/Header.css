@@ -69,3 +69,35 @@
 .menu-item:hover {
   background-color: #f0f0f0;
 }
+/* Media Queries */
+
+/* Styles for devices with a screen width of 768px or less */
+@media (max-width: 768px) {
+   width: 70%;
+  z-index: 10;    
+
+}
+
+/* Styles for devices with a screen width of 425px or less */
+@media (max-width: 425px) {
+   width: 98%;
+  z-index: 10;    
+
+
+}
+/* Styles for devices with a screen width of 375px or less */
+@media (max-width: 375px) {
+  width:110%    
+
+
+}
+
+/* Styles for devices with a screen width of 320px or less */
+@media (max-width: 320px) {
+  .header {
+     width: 98%;
+  z-index: 10;    
+  }
+
+
+}

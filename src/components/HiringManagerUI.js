@@ -1,18 +1,18 @@
 // src/components/HiringManagerUI.js
 import React from "react";
+import HomePage from "../HiringManager/home/home";
 
 const HiringManagerUI = () => {
   return (
-    <div style={uiStyle}>
-      <h2>Welcome, Hiring Manager!</h2>
-      <p>This is your dashboard. Manage your job postings and candidates here.</p>
+    <div>
+      <HomePage/>
     </div>
   );
 };
 
-const uiStyle = {
-  padding: "20px",
-  textAlign: "center",
-};
+// const uiStyle = {
+//   padding: "20px",
+//   textAlign: "center",
+// };
 
 export default HiringManagerUI;

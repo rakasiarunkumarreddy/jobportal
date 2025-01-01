@@ -1,0 +1,145 @@
+/* HiringManagerSignup.css */
+.signupContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: lightblue; /* Add solid light blue background color */
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  .formContainerSignup {
+    width: 40%;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: slideInFromLeft 1s ease-in-out;
+  }
+  
+  .formTitle {
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .inputField {
+    width: 95%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #C4C4C4;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .submitBtn {
+    width: 25%;
+    padding: 12px;
+    background-color: #4CAF50; /* Lighter green for the button */
+    color: #FFFFFF;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .loginPrompt {
+    margin-top: 10px;
+    text-align: center;
+    color: #333; /* Darker color for better contrast */
+  }
+  
+  .linkButton {
+    background: none;
+    border: none;
+    color: #4CAF50; /* Matching button color */
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+
+    
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes slideInFromLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+
+/* HiringManagerSignup.css */
+
+/* Base styles (unchanged) */
+
+/* Media query for tablets (max-width: 768px) */
+@media (max-width: 768px) {
+    .formContainerSignup {
+      width: 85%; /* Adjust width for tablets */
+      padding: 20px; /* Maintain padding */
+    }
+  
+    .formTitle {
+      font-size: 22px; /* Slightly smaller font size for title */
+    }
+  
+    .inputField {
+      font-size: 15px; /* Adjust input text size */
+    }
+  
+    .submitBtn {
+      font-size: 15px; /* Adjust button text size */
+    }
+  
+    .loginPrompt {
+      font-size: 13px; /* Adjust prompt text size */
+    }
+  }
+  
+  /* Media query for mobile devices (max-width: 425px) */
+  @media (max-width: 425px) {
+    .signupContainer {
+      padding: 10px; /* Add padding for smaller screens */
+    }
+  
+    .formContainerSignup {
+      width: 100%; /* Full width for mobile */
+      padding: 15px; /* Adjust padding */
+    }
+  
+    .formTitle {
+      font-size: 20px; /* Slightly smaller font size for title */
+    }
+  
+    .inputField {
+      font-size: 14px; /* Slightly smaller input text size */
+      padding: 8px; /* Reduce padding for input fields */
+    }
+  
+    .submitBtn {
+      font-size: 14px; /* Adjust button text size */
+      padding: 10px; /* Maintain padding for button */
+    }
+  
+    .loginPrompt {
+      font-size: 12px; /* Smaller text for mobile */
+    }
+  }
+  

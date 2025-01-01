@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import HiringManagerSignup from "./components/HiringManagerSignup";
-import HiringManagerLogin from "./components/HiringManagerLogin";
-import JobSeekerSignup from "./components/JobSeekerSignup";
-import JobSeekerLogin from "./components/JobSeekerLogin";
+import Home from "./components/landingPage/Home";
+import HiringManagerSignup from "./components/HM_Credentials/HM_Signup/HiringManagerSignup";
+import HiringManagerLogin from "./components/HM_Credentials/HM_Login/HiringManagerLogin";
+import JobSeekerSignup from "./components/JS_Credentials/JS_Signup/JobSeekerSignup";
+import JobSeekerLogin from "./components/JS_Credentials/JS_Login/JobSeekerLogin";
 import HiringManagerUI from "./components/HiringManagerUI";
 import JobSeekerUI from "./components/JobSeekerUI";
 import JobPosts from "./jobseekerUI/body/content/jobPosts/JobPosts"; // Corrected path

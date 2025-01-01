@@ -16,11 +16,11 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds shadow for a raised effect */
 }
 
-.job-posts {
+/* .job-posts {
   background-color: #ffffff; /* Example color for JobPosts */
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds shadow for a card-like effect */
   overflow-y: auto; /* Ensures scrolling if content overflows */
   scrollbarWidth: "thin"
-}
+/* } */ */

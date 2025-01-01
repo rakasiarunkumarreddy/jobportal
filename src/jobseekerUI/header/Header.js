@@ -37,14 +37,15 @@ function Header() {
       </div>
 
       {/* Centered Search Section */}
-      <div className="header-search-container">
+      {/* <div className="header-search-container">
         <input
           type="text"
           className="search-bar"
           placeholder="Search..."
         />
         <button className="search-button">Search</button>
-      </div>
+      </div> */}
+      <div style={{fontSize:"10px"}}><h1>JOB PORTAL</h1></div>
 
       {/* Profile Image */}
       <div className="header-profile">

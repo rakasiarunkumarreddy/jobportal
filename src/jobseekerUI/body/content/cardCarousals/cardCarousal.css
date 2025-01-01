@@ -1,105 +1,14 @@
-/* src/jobseekerUI/body/sidebar/Sidebar.css */
-
-.sidebar {
-  background-color: #f4f4f4;
-  padding: 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
-}
-
-.filters {
-  margin-bottom: 20px;
-}
-
-.filter-section {
-  margin-bottom: 20px;
-}
-
-.filter-section h3 {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.filter-section label {
-  display: block; /* Ensures labels are displayed line by line */
-  margin-bottom: 5px; /* Adds spacing between the labels */
-  font-size: 14px;
-}
-
-.apply-filters {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.apply-filters button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 10px;
-}
-
-.apply-filters button:hover {
-  background-color: #0056b3;
-}
-
-.remove-button {
-  background-color: #d32f2f;
-}
-
-.remove-button:hover {
-  background-color: #b71c1c;
-}
-
-/* src/jobseekerUI/body/content/jobPosts.css */
-
-.container {
-  display: flex;
-}
-
-.sidebar {
-  flex: 1;
-  background-color: #f4f4f4;
-  padding: 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
-}
-
-.content {
-  flex: 3;
-  padding: 20px;
-}
-
-.posts {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.jobPosts {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
-  margin: 10px;
-  flex-basis: 30%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 /* General styles for the carousel container */
 .cardCarousal {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 15px;
   border: 0px solid pink;
-  border-radius: 20px;
-  padding: 10px;
-  overflow-x: auto;
+  overflow-x: auto; /* Enable horizontal scrolling */
   width: 100%;
-  max-width: 1050px;
+  max-width: 1340px;
   margin: auto;
+  scroll-snap-type: x mandatory; /* Add scroll snap to improve user experience */
 }
 
 /* Hide the scrollbar for Webkit browsers (Chrome, Safari, Edge) */
@@ -114,15 +23,15 @@
 
 /* Individual card styles */
 .card {
-  border: 1px solid blue;
+  border: 1px solid black;
   padding: 0;
   border-radius: 20px;
   margin: 0;
   min-width: 300px;
   height: 200px;
-  position: relative;
   overflow: hidden;
   transition: transform 0.3s ease; /* Smooth scaling effect on hover */
+  scroll-snap-align: start; /* Snap the card to the start when scrolling */
 }
 
 /* Card image styles */
@@ -148,3 +57,60 @@
     transform: translateX(-100%);
   }
 }
+
+/* Media queries */
+
+/* Styles for devices with a screen width of 768px or less */
+/* src/jobseekerUI/body/content/jobPosts.css */
+
+/* Styles for devices with a screen width of 768px or less */
+@media (max-width: 768px) {
+  .cardCarousal {
+    flex-direction: row;  /* Ensure the flex direction is row */
+    width: 95%;  /* Decrease the width to 70% */
+  }
+
+  .card {
+    min-width: 250px;
+    height: 180px;
+  }
+
+  .card img {
+    object-fit: cover;
+  }
+}
+
+/* Styles for devices with a screen width of 425px or less */
+@media (max-width: 425px) {
+  .card {
+    min-width: 200px;
+    height: 160px;
+  }
+
+  .card img {
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 375px) {
+  .card {
+    min-width: 180px;
+    height: 150px;
+  }
+
+  .card img {
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 320px) {
+  .card {
+    min-width: 150px;
+    height: 140px;
+  }
+
+  .card img {
+    object-fit: cover;
+  }
+}
+

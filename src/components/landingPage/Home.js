@@ -1,13 +1,15 @@
 // src/components/Home.js
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
+import Header from "./Header";
+import BackgroundImage from "../../images/backgroungimage.webp"
 
 const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div 
+  >
       <Header />
       <div style={homeStyle}>
         <div style={textStyle}>
@@ -39,7 +41,6 @@ const homeStyle = {
   justifyContent: "center",
   alignItems: "center",
   padding: "40px",
-  backgroundColor: "pink", // Light background for better contrast
   minHeight: "70vh",
   textAlign: "center",
   gap:"20%",
@@ -47,16 +48,15 @@ const homeStyle = {
   margin: "30px 200px 0 200px",
   fontFamily:"Times New Roman",
   borderRadius:"40px",
-  backgroundImage: "url('https://tinyurl.com/4un6w44j')", 
   backgroundSize: "cover", 
   backgroundRepeat: "no-repeat", 
   backgroundPosition:"center",
   color:"#800000",
-
+  backgroundImage: `url(${BackgroundImage})`, // Use BackgroundImage variable
+  
 
 
 };
-
 const textStyle = {
   marginBottom: "30px",
 };
@@ -70,7 +70,7 @@ const headingStyle = {
 
 const paragraphStyle = {
   fontSize: "1.2rem",
-  color: "#6c757d", // Subtle gray for less emphasis
+  color: "white", // Subtle gray for less emphasis
 };
 
 const buttonContainerStyle = {
@@ -85,7 +85,7 @@ const buttonStyle = {
   fontSize: "1.1rem",
   fontWeight: "bold",
   color: "black",
-  backgroundColor: "pink", // Blue theme for buttons
+  backgroundColor: "white", // Blue theme for buttons
   border: "none",
   borderRadius: "5px",
   cursor: "pointer",
@@ -94,7 +94,7 @@ const buttonStyle = {
 };
 
 buttonStyle["&:hover"] = {
-  backgroundColor: "#0056b3", // Darker blue on hover
+  backgroundColor: "pink", // Darker blue on hover
 };
 
 export default Home;

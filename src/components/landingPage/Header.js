@@ -1,6 +1,6 @@
 // src/components/Header.js
 import React from "react";
-import Logo from "../images/Job portal.jpg"
+import Logo from "../../images/JOB1.png"
 
 const Header = () => (
   <header style={headerStyle}>
@@ -26,7 +26,7 @@ const headerText = {
   fontSize: "24px", 
   fontWeight: "bold",
   margin: "0", 
-  color: "orange", 
+  color: "white", 
   textAlign: "center", 
   position: "relative", 
 };
