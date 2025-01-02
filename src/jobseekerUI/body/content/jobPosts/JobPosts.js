@@ -137,13 +137,16 @@ const JobPosts = () => {
         ) : (
           filteredJobSeekers.map((seeker) => (
             <div className="jobPosts" key={seeker.id}>
-              <h4>Company: {seeker.companyName}</h4>
-              <h2>Job Title: {seeker.jobTitle}</h2>
+                            <h2> {seeker.jobTitle}</h2>
+
+              <h4> {seeker.companyName}</h4>
               <div>
-                <p>Location: {seeker.location}</p>
-                <p>Date: {seeker.postDate}</p>
+                <p><span></span> {seeker.location}</p>
+                <p><span>Date:</span> {seeker.postDate}</p>
               </div>
-              <p>Skills: {Array.isArray(seeker.skills) ? seeker.skills.join(', ') : seeker.skills}</p>
+              <div className="skills-box">
+                <p><span>Skills:</span> {Array.isArray(seeker.skills) ? seeker.skills.join(', ') : seeker.skills}</p>
+              </div>
               <Link to={`/job-seeker/ui/job-description/${seeker.id}`}>
                 <button>Apply</button>
               </Link>

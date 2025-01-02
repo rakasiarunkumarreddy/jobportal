@@ -27,7 +27,7 @@ function Header() {
   
 
   return (
-    <header className="header">
+    <header className="header" style={{backgroundColor:"rgb(41, 132, 222)"}}>
       {/* Logo */}
       <div className="header-logo">
         <img

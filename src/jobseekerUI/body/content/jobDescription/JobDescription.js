@@ -31,13 +31,15 @@ const JobDescription = () => {
       <div className="header">
         <h1>{jobDetails.jobTitle}</h1>
         <button className="applyButton" onClick={() => navigate(`/submit-details`)}>Apply</button>
+      </div >
+      <div>
+      <p><em>Company:</em> {jobDetails.companyName}</p>
+      <p><em>Description: </em>{jobDetails.jobDescription}</p>
+      <p><em>JobType:</em> {jobDetails.jobType}</p>
+      <p><em>Location:</em> {jobDetails.location}</p>
+      <p><em>Date:</em> {jobDetails.postDate}</p>
+      <p><em>Skills:</em> {jobDetails.skills}</p>
       </div>
-      <p>Company: {jobDetails.companyName}</p>
-      <p>Description: {jobDetails.jobDescription}</p>
-      <p>JobType: {jobDetails.jobType}</p>
-      <p>Location: {jobDetails.location}</p>
-      <p>Date: {jobDetails.postDate}</p>
-      <p>Skills: {jobDetails.skills}</p>
     </div>
   );
 };

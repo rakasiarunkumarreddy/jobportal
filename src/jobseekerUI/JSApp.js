@@ -13,7 +13,7 @@ const App = () => {
   };
 
   return (
-    <div className="app-container">
+    <div className="app-container" style={{background:"linear-gradient(90deg, rgb(2, 73, 108), rgb(9, 33, 69));"}}>
       <Header onSearch={handleSearch} />  {/* Pass handleSearch function to Header */}
       <Body searchTerm={searchTerm} />    {/* Pass searchTerm down to Body */}
     </div>

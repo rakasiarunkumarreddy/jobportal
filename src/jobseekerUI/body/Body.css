@@ -1,26 +1,16 @@
 /* src/body/Body.css */
 .body-container {
-  display: grid;
-  grid-template-columns: 20% 80%; /* Sidebar 30%, Content 70% */
-  height: 100%; /* Ensures it fills the entire height of the Body component */
-  gap: 10px; /* Optional: Adds space between Sidebar and Content */
-  background-color: #f8f9fa; /* Example background color */
+  height: 80%%; /* Ensures it fills the entire height of the Body component */
+  background-color:rgb(101, 10, 84); /* Example background color */
   box-sizing: border-box; /* Ensures padding is included in dimensions */
 }
 
-/* .sidebar {
-  background-color: #6a1b9a; /* Example color for Sidebar */
-  color: black;
-  padding: 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Adds shadow for a raised effect */
-  border-radius: 8px;
-  height:80vh
-/* } */ */
+
 
 .content {
   background-color:red; /* Example color for Content */
   padding: 20px;
-  box-shadow: 0 2px 5px rgba(154, 27, 27, 0.1); /* Adds shadow for a card-like effect */
+  box-shadow: 0 2px 5px rgba(85, 8, 8, 0.1); /* Adds shadow for a card-like effect */
   border-radius: 8px;
   overflow-y: auto; /* Ensures scrolling if content overflows */
 }
