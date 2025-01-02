@@ -2,7 +2,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
-import BackgroundImage from "../../images/backgroungimage.webp"
+// import BackgroundImage from "../../images/backgroungimage.webp"
 
 const Home = () => {
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ const homeStyle = {
   backgroundRepeat: "no-repeat", 
   backgroundPosition:"center",
   color:"#800000",
-  backgroundImage: `url(${BackgroundImage})`, // Use BackgroundImage variable
+  // backgroundImage: `url(${BackgroundImage})`, // Use BackgroundImage variable
   
 
 
