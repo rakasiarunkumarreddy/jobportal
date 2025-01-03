@@ -6,7 +6,10 @@
   gap: 0px; /* Optional: Adds space between CardCarousal and JobPosts */
   padding: 10px; /* Optional: Adds padding inside the Content */
   box-sizing: border-box; /* Includes padding in total dimensions */
-  background-color: #f8f9fa; /* Example background color */
 }
 
-
+@media (max-width: 768px) {
+  .content {
+    width: 98%;
+  }
+}

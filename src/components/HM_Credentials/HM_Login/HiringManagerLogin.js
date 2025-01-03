@@ -30,7 +30,8 @@ const HiringManagerLogin = () => {
 
       const user = Object.values(data).find(
         (item) =>
-          item.email === credentials.email && item.password === credentials.password
+          item.email === credentials.email &&
+          item.password === credentials.password
       );
 
       if (user) {

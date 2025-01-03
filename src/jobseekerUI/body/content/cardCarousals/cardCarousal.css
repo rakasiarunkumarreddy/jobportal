@@ -63,8 +63,8 @@
 /* Styles for devices with a screen width of 768px or less */
 @media (max-width: 768px) {
   .cardCarousal {
-    flex-direction: row;  /* Ensure the flex direction is row */
-    width: 95%;  /* Decrease the width to 95% */
+    flex-direction: row; /* Ensure the flex direction is row */
+    width: 95%; /* Decrease the width to 95% */
   }
 
   .card {
@@ -80,8 +80,18 @@
 /* Styles for devices with a screen width of 425px or less */
 @media (max-width: 425px) {
   .card {
-    min-width: 200px;
-    height: 160px;
+    min-width: 150px;
+    height: 140px;
+  }
+  .cardCarousal {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    border: 0px solid pink;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    width: 100%;
+    max-width: 1600px;
+    margin-right: 800px;
   }
 
   .card img {
@@ -91,8 +101,18 @@
 
 @media (max-width: 375px) {
   .card {
-    min-width: 180px;
-    height: 150px;
+    min-width: 150px;
+    height: 140px;
+  }
+  .cardCarousal {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    border: 0px solid pink;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    width: 100%;
+    max-width: 100px;
+    margin-right: 800px;
   }
 
   .card img {
@@ -104,6 +124,16 @@
   .card {
     min-width: 150px;
     height: 140px;
+  }
+  .cardCarousal {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    border: 0px solid pink;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    width: 100%;
+    max-width: 280px;
+    margin-right: 800px;
   }
 
   .card img {

@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import './Header.css';  // Importing the custom CSS for styling
-import Logo from "../../images/Job portal.jpg"
+import React, { useState } from "react";
+import "./Header.css"; // Importing the custom CSS for styling
+import Logo from "../../images/JOB1.png";
 import { useNavigate } from "react-router-dom";
-
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,15 +22,14 @@ function Header() {
     }
   };
 
-    const navigate = useNavigate();
-  
+  const navigate = useNavigate();
 
   return (
-    <header className="header" style={{backgroundColor:"rgb(41, 132, 222)"}}>
+    <header className="header" style={{ backgroundColor: "rgb(41, 132, 222)" }}>
       {/* Logo */}
       <div className="header-logo">
         <img
-          src={Logo}  // Replace with your actual logo path
+          src={Logo} // Replace with your actual logo path
           alt="Job Portal Logo"
         />
       </div>
@@ -45,12 +43,14 @@ function Header() {
         />
         <button className="search-button">Search</button>
       </div> */}
-      <div className="title" style={{fontSize:"10px",color:"orange"}}><h1>JOB PORTAL</h1></div>
+      <div className="title" style={{ fontSize: "10px", color: "orange" }}>
+        <h1>JOB PORTAL</h1>
+      </div>
 
       {/* Profile Image */}
       <div className="header-profile">
         <img
-          src={userImage || "https://tinyurl.com/2dnywp4w"}  // Default profile image if not uploaded
+          src={userImage || "https://tinyurl.com/2dnywp4w"} // Default profile image if not uploaded
           alt="User Avatar"
           className="profile-avatar"
           onClick={handleMenuToggle}
@@ -65,16 +65,18 @@ function Header() {
                   id="upload-image"
                   type="file"
                   accept="image/*"
-                  style={{ display: 'none' }}
+                  style={{ display: "none" }}
                   onChange={handleImageUpload}
                 />
               </label>
             </div>
             {/* Sign Out */}
-            <div className="menu-item" onClick={() => {
-                  navigate("/job-seeker/login"); 
-
-            }}>
+            <div
+              className="menu-item"
+              onClick={() => {
+                navigate("/job-seeker/login");
+              }}
+            >
               Sign Out
             </div>
           </div>

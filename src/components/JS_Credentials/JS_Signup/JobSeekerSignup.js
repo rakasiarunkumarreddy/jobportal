@@ -93,7 +93,8 @@ const JobSeekerSignup = () => {
             Signup
           </button>
           <div className="login-link">
-            If you are already a user, <Link to="/job-seeker/login">click here to login</Link>.
+            If you are already a user,{" "}
+            <Link to="/job-seeker/login">click here to login</Link>.
           </div>
         </form>
       </div>

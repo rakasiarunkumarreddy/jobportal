@@ -5,7 +5,7 @@ import HomePage from "../HiringManager/home/home";
 const HiringManagerUI = () => {
   return (
     <div>
-      <HomePage/>
+      <HomePage />
     </div>
   );
 };

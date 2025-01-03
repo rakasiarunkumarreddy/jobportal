@@ -16,14 +16,20 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/hiring-manager/signup" element={<HiringManagerSignup />} />
+        <Route
+          path="/hiring-manager/signup"
+          element={<HiringManagerSignup />}
+        />
         <Route path="/hiring-manager/login" element={<HiringManagerLogin />} />
         <Route path="/hiring-manager/ui" element={<HiringManagerUI />} />
         <Route path="/job-seeker/signup" element={<JobSeekerSignup />} />
         <Route path="/job-seeker/login" element={<JobSeekerLogin />} />
         <Route path="/job-seeker/ui" element={<JobSeekerUI />} />
         <Route path="/job-seeker/ui/job-posts" element={<JobPosts />} />
-        <Route path="/job-seeker/ui/job-description/:id" element={<JobDescription />} />
+        <Route
+          path="/job-seeker/ui/job-description/:id"
+          element={<JobDescription />}
+        />
         <Route path="/submit-details" element={<SubmitDetails />} />
       </Routes>
     </Router>

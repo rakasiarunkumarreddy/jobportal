@@ -6,8 +6,8 @@ import JobPosts from "./jobPosts/JobPosts";
 function Content() {
   return (
     <div className="content">
-        <CardCarousal />
-        <JobPosts/>
+      <CardCarousal />
+      <JobPosts />
     </div>
   );
 }

@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { Progress } from "antd";
 import { BarChart } from "@mui/x-charts/BarChart";
 
-
 export default function MainComp() {
   const [applications, setApplications] = useState(5);
-   // Example value for applications
+  // Example value for applications
 
   const maxApplications = 10;
-  const progressPercent = (applications / maxApplications) * 100; 
+  const progressPercent = (applications / maxApplications) * 100;
 
   const dataset = [
     { jobPost: "Software Engineer", applications: 9, hired: 2 },
@@ -17,10 +16,11 @@ export default function MainComp() {
     { jobPost: "UI/UX Designer", applications: 4, hired: 1 },
     { jobPost: "Full Stack Developer", applications: 6, hired: 2 },
   ];
-  
+
   const chartSetting = {
-    width: 700, 
-    height: 450,}
+    width: 700,
+    height: 450,
+  };
 
   return (
     <div
@@ -53,8 +53,12 @@ export default function MainComp() {
             </span>
           )}
         />
-        <h4 style={{ margin: "10px", padding:"10px" }}>No of Applications : {applications}</h4>
-        <h4 style={{ margin: "10px", padding:"10px" }}>No of Openings : {maxApplications}</h4>
+        <h4 style={{ margin: "10px", padding: "10px" }}>
+          No of Applications : {applications}
+        </h4>
+        <h4 style={{ margin: "10px", padding: "10px" }}>
+          No of Openings : {maxApplications}
+        </h4>
       </div>
 
       {/* Bar Chart Section */}
@@ -70,7 +74,9 @@ export default function MainComp() {
         </h2>
         <BarChart
           dataset={dataset}
-          xAxis={[{ scaleType: "band", dataKey: "jobPost", label: "Job Roles" }]}
+          xAxis={[
+            { scaleType: "band", dataKey: "jobPost", label: "Job Roles" },
+          ]}
           yAxis={[
             { scaleType: "linear", dataKey: "applications", label: "Count" },
           ]}

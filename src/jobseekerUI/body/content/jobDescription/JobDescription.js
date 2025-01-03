@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { db2, ref, get } from '../../../../firebase';
-import './jobDescription.css';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { db2, ref, get } from "../../../../firebase";
+import "./jobDescription.css";
 
 const JobDescription = () => {
   const [jobDetails, setJobDetails] = useState(null);
@@ -15,7 +15,7 @@ const JobDescription = () => {
       if (snapshot.exists()) {
         setJobDetails(snapshot.val());
       } else {
-        console.log('No data available');
+        console.log("No data available");
       }
     };
 
@@ -30,15 +30,33 @@ const JobDescription = () => {
     <div className="jobDescription">
       <div className="header">
         <h1>{jobDetails.jobTitle}</h1>
-        <button className="applyButton" onClick={() => navigate(`/submit-details`)}>Apply</button>
-      </div >
+        <button
+          className="applyButton"
+          onClick={() => navigate(`/submit-details`)}
+        >
+          Apply
+        </button>
+      </div>
       <div>
-      <p><em>Company:</em> {jobDetails.companyName}</p>
-      <p><em>Description: </em>{jobDetails.jobDescription}</p>
-      <p><em>JobType:</em> {jobDetails.jobType}</p>
-      <p><em>Location:</em> {jobDetails.location}</p>
-      <p><em>Date:</em> {jobDetails.postDate}</p>
-      <p><em>Skills:</em> {jobDetails.skills}</p>
+        <p>
+          <strong>Company:</strong> {jobDetails.companyName}
+        </p>
+        <p>
+          <strong>Description: </strong>
+          {jobDetails.jobDescription}
+        </p>
+        <p>
+          <strong>JobType:</strong> {jobDetails.jobType}
+        </p>
+        <p>
+          <strong>Location:</strong> {jobDetails.location}
+        </p>
+        <p>
+          <strong>Date:</strong> {jobDetails.postDate}
+        </p>
+        <p>
+          <strong>Skills:</strong> {jobDetails.skills}
+        </p>
       </div>
     </div>
   );

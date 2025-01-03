@@ -1,5 +1,5 @@
-import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, get, push } from 'firebase/database'; // Add push to the import
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, get, push } from "firebase/database"; // Add push to the import
 
 // Configuration for the first Firebase app
 const firebaseConfig1 = {

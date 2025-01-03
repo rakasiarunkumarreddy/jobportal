@@ -1,7 +1,7 @@
 // src/body/body.js
-import React from 'react';
-import './Body.css';
-import Content from './content/Content';
+import React from "react";
+import "./Body.css";
+import Content from "./content/Content";
 
 const Body = ({ searchTerm }) => {
   return (

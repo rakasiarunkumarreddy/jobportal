@@ -4,7 +4,7 @@ import "./cardCarousal.css";
 const CardCarousal = () => {
   return (
     <div>
-      <h1 style={{fontSize:"20px"}}>Trending Courses</h1>
+      <h1 style={{fontSize:"20px",color:"white"}}>Trending Courses</h1>
       <div className="cardCarousal">
         <div className="card">
           <a href="https://youtu.be/Vi9bxu-M-ag?si=mVIqi_Piyc5aGRMb">
