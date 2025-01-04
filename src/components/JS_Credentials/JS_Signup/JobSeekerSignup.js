@@ -32,6 +32,7 @@ const JobSeekerSignup = () => {
       await axios.post(databaseUrl, formData);
 
       // Navigate to the login page
+      alert("SignUp Successful")
       navigate("/job-seeker/login");
     } catch (err) {
       setError("Error submitting data. Please try again.");

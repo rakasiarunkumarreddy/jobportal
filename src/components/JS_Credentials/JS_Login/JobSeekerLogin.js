@@ -32,7 +32,9 @@ const JobSeekerLogin = () => {
       );
 
       if (validUser) {
+        alert("Login Successful")
         navigate("/job-seeker/ui");
+
       } else {
         setError("Invalid email or password");
       }
