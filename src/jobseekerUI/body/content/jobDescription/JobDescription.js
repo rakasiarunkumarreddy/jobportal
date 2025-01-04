@@ -32,7 +32,11 @@ const JobDescription = () => {
         <h1>{jobDetails.jobTitle}</h1>
         <button
           className="applyButton"
-          onClick={() => navigate(`/submit-details`)}
+          onClick={() =>
+            navigate(`/submit-details`, {
+              state: { jobTitle: jobDetails.jobTitle, companyName: jobDetails.companyName },
+            })
+          }
         >
           Apply
         </button>

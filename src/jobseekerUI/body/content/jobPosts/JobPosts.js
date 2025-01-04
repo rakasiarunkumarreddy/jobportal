@@ -101,52 +101,56 @@ const JobPosts = () => {
 
   return (
     <div>
-      <h1 style={{ fontSize: "20px", color: "white" }}>Job Seekers</h1>
+      <h1 style={{ fontSize: "30px", color: "white",textAlign:"center" }}>Job Seekers</h1>
 
       {/* Search Bar */}
       <div className="search-container">
-        <input
-          type="text"
-          className="search-bar"
-          placeholder="Search by job title..."
-          name="jobTitle"
-          value={filters.jobTitle}
-          onChange={updateFilters}
-        />
-        <input
-          type="text"
-          className="search-bar"
-          placeholder="Search by company name..."
-          name="companyName"
-          value={filters.companyName}
-          onChange={updateFilters}
-        />
-        <input
-          type="text"
-          className="search-bar"
-          placeholder="Search by location..."
-          name="location"
-          value={filters.location}
-          onChange={updateFilters}
-        />
-        <input
-          type="date"
-          className="search-bar"
-          placeholder="Search by date..."
-          name="date"
-          value={filters.date}
-          onChange={updateFilters}
-        />
-        <input
-          type="text"
-          className="search-bar"
-          placeholder="Search by skills..."
-          name="skills"
-          value={filters.skills}
-          onChange={updateFilters}
-        />
-        <button onClick={applyFilters}>Apply Filters</button>
-        <button onClick={removeFilters}>Remove Filters</button>
+        <div className="search-inputs">
+          <input
+            type="text"
+            className="search-bar"
+            placeholder="Search by job title..."
+            name="jobTitle"
+            value={filters.jobTitle}
+            onChange={updateFilters}
+          />
+          <input
+            type="text"
+            className="search-bar"
+            placeholder="Search by company name..."
+            name="companyName"
+            value={filters.companyName}
+            onChange={updateFilters}
+          />
+          <input
+            type="text"
+            className="search-bar"
+            placeholder="Search by location..."
+            name="location"
+            value={filters.location}
+            onChange={updateFilters}
+          />
+          <input
+            type="date"
+            className="search-bar"
+            placeholder="Search by date..."
+            name="date"
+            value={filters.date}
+            onChange={updateFilters}
+          />
+          <input
+            type="text"
+            className="search-bar"
+            placeholder="Search by skills..."
+            name="skills"
+            value={filters.skills}
+            onChange={updateFilters}
+          />
+        </div>
+        <div className="search-buttons">
+          <button onClick={applyFilters}>Apply Filters</button>
+          <button onClick={removeFilters}>Remove Filters</button>
+        </div>
       </div>
 
       <div className="posts">

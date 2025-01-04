@@ -80,38 +80,84 @@ button:hover {
 /* Search container styles */
 .search-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center; /* Center align the content */
   gap: 10px;
   margin: 20px 0;
 }
+
+.search-inputs {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Center align the inputs */
+  gap: 10px;
+}
+
+.search-buttons {
+  display: flex;
+  justify-content: center; /* Center align the buttons */
+  gap: 10px;
+}
+
 .search-bar {
   border-radius: 10px;
   border-color: blue;
   min-width: 150px;
+  padding:10px
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .jobPosts {
-    width: 100%; /* 2 cards per row on smaller screens */
+    width: 46%; /* 2 cards per row on smaller screens */
   }
-  .posts {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px; /* Spacing between cards */
-    width: 30%;
-  }
-  .search-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin: px 0;
-    width: 30%;
+  .search-bar {
+    border-radius: 10px;
+    border-color: blue;
+    min-width: 10px;
+    max-width:100px;
+    padding:10px
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 430px) {
   .jobPosts {
     width: 100%; /* 1 card per row on very small screens */
+  }
+  .search-inputs {
+    display: flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    /* Center align the inputs */
+
+    gap: 10px;
+  }
+  .search-bar {
+    border-radius: 10px;
+    border-color: blue;
+    min-width: 10px;
+    max-width:90px;
+    padding:10px
+  }
+}
+
+@media (max-width: 320px) {
+  .jobPosts {
+    width: 100%; /* 1 card per row on very small screens */
+  }
+  .search-inputs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    align-items: center; /* Center align the inputs */
+
+    gap: 10px;
+  }
+  .search-bar {
+    border-radius: 10px;
+    border-color: blue;
+    min-width: 10px;
+    max-width:10000px;
+    padding:10px
   }
 }

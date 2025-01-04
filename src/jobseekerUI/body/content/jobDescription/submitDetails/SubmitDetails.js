@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { db1, ref, push } from '../../../../../firebase';
 import './submitDetails.css';
 
 const SubmitDetails = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { jobTitle, companyName } = location.state || {};
+
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -13,6 +16,8 @@ const SubmitDetails = () => {
     photo: '',
     gender: '',
     experience: '',
+    jobTitle: jobTitle || '',
+    companyName: companyName || ''
   });
   const [showMessage, setShowMessage] = useState(false);
 
@@ -52,6 +57,12 @@ const SubmitDetails = () => {
       )}
       <h1>Submit Details</h1>
       <form onSubmit={handleSubmit}>
+        {jobTitle && (
+          <p><strong>Job Title:</strong> {jobTitle}</p>
+        )}
+        {companyName && (
+          <p><strong>Company Name:</strong> {companyName}</p>
+        )}
         <label>
           Full Name:
           <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} required />
@@ -97,5 +108,3 @@ const SubmitDetails = () => {
 };
 
 export default SubmitDetails;
-
-

@@ -19,7 +19,9 @@
 /* Hide the scrollbar for Firefox */
 .cardCarousal {
   scrollbar-width: none; /* Firefox: hides the scrollbar */
+  
 }
+
 
 /* Individual card styles */
 .card {
@@ -63,8 +65,10 @@
 /* Styles for devices with a screen width of 768px or less */
 @media (max-width: 768px) {
   .cardCarousal {
+    display:flex;
     flex-direction: row; /* Ensure the flex direction is row */
-    width: 95%; /* Decrease the width to 95% */
+    width: 100%; /* Decrease the width to 95% */
+    max-width:700px
   }
 
   .card {
@@ -74,11 +78,11 @@
 
   .card img {
     object-fit: cover;
-  }
+  }                 
 }
 
 /* Styles for devices with a screen width of 425px or less */
-@media (max-width: 425px) {
+@media (max-width: 430px) {
   .card {
     min-width: 150px;
     height: 140px;
@@ -90,8 +94,7 @@
     border: 0px solid pink;
     overflow-x: auto; /* Enable horizontal scrolling */
     width: 100%;
-    max-width: 1600px;
-    margin-right: 800px;
+    max-width:370px
   }
 
   .card img {
@@ -99,7 +102,7 @@
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 380px) {
   .card {
     min-width: 150px;
     height: 140px;
@@ -111,8 +114,8 @@
     border: 0px solid pink;
     overflow-x: auto; /* Enable horizontal scrolling */
     width: 100%;
-    max-width: 100px;
-    margin-right: 800px;
+    max-width:340px
+    
   }
 
   .card img {
@@ -132,8 +135,7 @@
     border: 0px solid pink;
     overflow-x: auto; /* Enable horizontal scrolling */
     width: 100%;
-    max-width: 280px;
-    margin-right: 800px;
+    max-width: 270px;
   }
 
   .card img {

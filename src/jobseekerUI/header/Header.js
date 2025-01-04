@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Header.css"; // Importing the custom CSS for styling
-import Logo from "../../images/JOB1.png";
+import Logo from "../../images/JOB.png";
 import { useNavigate } from "react-router-dom";
 
 function Header() {

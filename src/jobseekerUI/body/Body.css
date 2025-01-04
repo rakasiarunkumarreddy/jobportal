@@ -2,6 +2,7 @@
 .body-container {
   height: 80%%; /* Ensures it fills the entire height of the Body component */
   box-sizing: border-box; /* Ensures padding is included in dimensions */
+  
 }
 
 .content {
@@ -11,8 +12,4 @@
   overflow-y: auto; /* Ensures scrolling if content overflows */
 }
 
-@media (max-width: 768px) {
-  .body-container {
-    width: 100%;
-  }
-}
+
