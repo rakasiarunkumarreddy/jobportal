@@ -12,8 +12,9 @@ const SubmitDetails = () => {
     fullName: '',
     email: '',
     phoneNumber: '',
-    role: '',
-    photo: '',
+    Skills: '',
+    LinkedInURL: '',
+    resumeUrl: '',
     gender: '',
     experience: '',
     jobTitle: jobTitle || '',
@@ -50,11 +51,6 @@ const SubmitDetails = () => {
 
   return (
     <div className="submitDetails">
-      {showMessage && (
-        <div className="topConfirmation">
-          <button className="goHomeButton" onClick={handleGoHome}>Go to Home</button>
-        </div>
-      )}
       <h1>Submit Details</h1>
       <form onSubmit={handleSubmit}>
         {jobTitle && (
@@ -76,12 +72,16 @@ const SubmitDetails = () => {
           <input type="tel" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
         </label>
         <label>
-          Role:
-          <input type="text" name="role" value={formData.role} onChange={handleChange} required />
+          Skills:
+          <input type="text" name="Skills" value={formData.Skills} onChange={handleChange} placeholder='Enter Skills here' required />
         </label>
         <label>
-          Upload Photo:
-          <input type="file" name="photo" onChange={handleChange} />
+          Linkedin URL:
+          <input type="text" name="LinkedInURL" value={formData.LinkedInURL} onChange={handleChange} placeholder="Paste linkedin URL" required />
+        </label>
+        <label>
+          Resume:
+          <input type="text" name="resumeUrl" value={formData.resumeUrl} onChange={handleChange} placeholder="Paste drive link" required />
         </label>
         <label>
           Gender:
@@ -98,7 +98,12 @@ const SubmitDetails = () => {
           Experience:
           <input type="text" name="experience" value={formData.experience} onChange={handleChange} required />
         </label>
-        <button type="submit" className="submitButton">Submit</button>
+        <div className="buttonContainer">
+          <button type="submit" className="submitButton">Submit</button>
+          {showMessage && (
+            <button type="button" className="goHomeButton" onClick={handleGoHome}>Go to Home</button>
+          )}
+        </div>
       </form>
       {showMessage && (
         <div className="confirmationMessage">Form submitted successfully!</div>
