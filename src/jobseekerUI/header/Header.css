@@ -2,40 +2,33 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px;
+  padding: 10px;
   background-color: rgb(47, 58, 124);
   position: sticky;
   top: 0; /* Will stick to the top as you scroll */
   width: 98%;
   z-index: 10;
-  border-radius: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(243, 241, 247, 0.71); /* Added shadow for better look */
 }
 
 .header-logo img {
   height: 50px;
-  width: 90px;
+  width: 50px;
   border-radius: 40px;
+  transition: transform 0.3s ease; /* Smooth zoom on hover */
 }
 
-.header-search-container {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.header-logo img:hover {
+  transform: scale(2.1); /* Zoom in the logo on hover */
 }
 
-.header-search-container .search-bar {
-  padding: 8px;
-  border-radius: 8px;
-  width: 300px;
-}
-
-.header-search-container .search-button {
-  padding: 8px 16px;
-  background-color: #ff4081;
-  border: none;
+.title {
   color: white;
-  border-radius: 4px;
-  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase; /* Uppercase for a stronger look */
 }
 
 .header-profile {
@@ -43,10 +36,15 @@
 }
 
 .profile-avatar {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   cursor: pointer;
+  transition: box-shadow 0.3s ease; /* Smooth shadow on hover */
+}
+
+.profile-avatar:hover {
+  box-shadow: 0 4px 8px rgba(138, 21, 35, 0.3); /* Shadow on hover */
 }
 
 /* Menu styles */
@@ -59,90 +57,20 @@
   border-radius: 4px;
   width: 150px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 20;
 }
 
 .menu-item {
   padding: 8px 16px;
   cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth background change */
 }
 
 .menu-item:hover {
-  background-color: #f0f0f0;
+  background-color: #f0f0f0; /* Light background on hover */
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px;
-  background-color: rgb(47, 58, 124);
-  position: sticky;
-  top: 0; /* Will stick to the top as you scroll */
-  width: 98%;
-  z-index: 10;
-  border-radius: 20px;
-}
-
-.header-logo img {
-  height: 50px;
-  width: 90px;
-  border-radius: 40px;
-}
-
-.header-search-container {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.header-search-container .search-bar {
-  padding: 8px;
-  border-radius: 8px;
-  width: 300px;
-}
-
-.header-search-container .search-button {
-  padding: 8px 16px;
-  background-color: #ff4081;
-  border: none;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.header-profile {
-  position: relative;
-}
-
-.profile-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-/* Menu styles */
-.menu {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 150px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.menu-item {
-  padding: 8px 16px;
-  cursor: pointer;
-}
-
-.menu-item:hover {
-  background-color: #f0f0f0;
-}
 /* Media Queries */
-
 @media (max-width: 768px) {
   .header {
     width: 95%;
@@ -157,7 +85,6 @@
 
 @media (max-width: 320px) {
   .header {
-    display: flex;
     flex-direction: row;
     padding-left: 45px;
     padding-right: 45px;
@@ -165,10 +92,10 @@
   .header-logo img {
     height: 30px;
     width: 30px;
-    border-radius: 40px;
   }
   .title {
     padding-left: 30px;
     padding-right: 30px;
+    font-size: 16px; /* Adjust font size for small screens */
   }
 }

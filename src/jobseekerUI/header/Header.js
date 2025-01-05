@@ -34,17 +34,8 @@ function Header() {
         />
       </div>
 
-      {/* Centered Search Section */}
-      {/* <div className="header-search-container">
-        <input
-          type="text"
-          className="search-bar"
-          placeholder="Search..."
-        />
-        <button className="search-button">Search</button>
-      </div> */}
-      <div className="title" style={{ fontSize: "10px", color: "orange" }}>
-        <h1>JOB PORTAL</h1>
+      <div className="title" style={{ color: "white" }}>
+        <h2 style={{ fontSize: "20px" }}>JOB PORTAL</h2>
       </div>
 
       {/* Profile Image */}
