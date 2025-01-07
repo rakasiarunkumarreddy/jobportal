@@ -39,7 +39,7 @@
 /* Card image styles */
 .card img {
   width: 100%;
-  height: 100%;
+  height: 120%;
   object-fit: cover; /* Ensure the image covers the card while maintaining aspect ratio */
   object-position: center;
   transition: transform 0.3s ease; /* Smooth zoom effect on hover */

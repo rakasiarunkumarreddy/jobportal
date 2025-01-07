@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Header from "./header/Header";
 import Body from "./body/body";
 import "./JSApp.css";
+import FooterComp from "../HiringManager/dashborad/footer"
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState(""); // State to hold search term
@@ -22,6 +23,7 @@ const App = () => {
       <Header onSearch={handleSearch} />{" "}
       {/* Pass handleSearch function to Header */}
       <Body searchTerm={searchTerm} /> {/* Pass searchTerm down to Body */}
+      <FooterComp/>
     </div>
   );
 };

@@ -1,12 +1,13 @@
-// src/components/JobSeekerLogin.js
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./JobSeekerLogin.css"; // Import the CSS file
+import "./JobSeekerLogin.css";
+import Alert from "../../alert/Alert"; 
 
 const JobSeekerLogin = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -24,7 +25,6 @@ const JobSeekerLogin = () => {
 
       const response = await axios.get(databaseUrl);
 
-      // Check if credentials match
       const seekers = Object.values(response.data || {});
       const validUser = seekers.find(
         (user) =>
@@ -32,15 +32,36 @@ const JobSeekerLogin = () => {
       );
 
       if (validUser) {
-        alert("Login Successful")
-        navigate("/job-seeker/ui");
+        const loginDetailsUrl =
+          "https://jobseeker-application-default-rtdb.firebaseio.com/jobSeekerLoginDetails.json";
+        const loginResponse = await axios.get(loginDetailsUrl);
+        const loginDetails = loginResponse.data;
 
+        if (loginDetails && Object.keys(loginDetails).length > 0) {
+          const existingKey = Object.keys(loginDetails)[0];
+          const updateUrl = `https://jobseeker-application-default-rtdb.firebaseio.com/jobSeekerLoginDetails/${existingKey}.json`;
+
+          await axios.put(updateUrl, {
+            email: formData.email,
+            password: formData.password,
+          });
+        } else {
+          await axios.post(loginDetailsUrl, {
+            email: formData.email,
+            password: formData.password,
+          });
+        }
+
+        setShowAlert(true); // Show the alert
+        setTimeout(() => {
+          navigate("/job-seeker/ui");
+        }, 3000); // Navigate after the alert disappears
       } else {
         setError("Invalid email or password");
       }
     } catch (err) {
       setError("Error logging in. Please try again.");
-      console.error(err);
+      console.error("Firebase submission error:", err);
     }
   };
 
@@ -73,6 +94,9 @@ const JobSeekerLogin = () => {
           </button>
         </form>
       </div>
+      {showAlert && (
+        <Alert message="Login Successful" onClose={() => setShowAlert(false)} />
+      )}
     </div>
   );
 };

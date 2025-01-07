@@ -1,8 +1,8 @@
-// src/components/JobSeekerSignup.js
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import "./JobSeekerSignup.css"; // Import the CSS file
+import Alert from "../../alert/Alert"; // Import the Alert component
 
 const JobSeekerSignup = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +13,8 @@ const JobSeekerSignup = () => {
   });
 
   const [error, setError] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -31,11 +33,16 @@ const JobSeekerSignup = () => {
       // Submit data to Firebase
       await axios.post(databaseUrl, formData);
 
-      // Navigate to the login page
-      alert("SignUp Successful")
-      navigate("/job-seeker/login");
+      // Show success alert and navigate to the login page
+      setAlertMessage("Signup Successful");
+      setShowAlert(true);
+      setTimeout(() => {
+        navigate("/job-seeker/login");
+      }, 3000);
     } catch (err) {
       setError("Error submitting data. Please try again.");
+      setAlertMessage("Signup failed! Please try again.");
+      setShowAlert(true);
       console.error("Firebase submission error:", err);
     }
   };
@@ -99,6 +106,12 @@ const JobSeekerSignup = () => {
           </div>
         </form>
       </div>
+      {showAlert && (
+        <Alert
+          message={alertMessage}
+          onClose={() => setShowAlert(false)}
+        />
+      )}
     </div>
   );
 };

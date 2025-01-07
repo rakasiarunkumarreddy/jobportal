@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { db1, ref, push } from '../../../../../firebase';
+import { db1, ref, push, get } from '../../../../../firebase';
 import './submitDetails.css';
 
 const SubmitDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { jobTitle, companyName } = location.state || {};
+  const { jobTitle, companyName, postedBy } = location.state || {};
 
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     fullName: '',
     email: '',
     phoneNumber: '',
@@ -18,9 +18,32 @@ const SubmitDetails = () => {
     gender: '',
     experience: '',
     jobTitle: jobTitle || '',
-    companyName: companyName || ''
-  });
+    companyName: companyName || '',
+    postedBy: postedBy || ''
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
   const [showMessage, setShowMessage] = useState(false);
+
+  useEffect(() => {
+    const fetchPostedBy = async () => {
+      try {
+        const postedByRef = ref(db1, 'postedBy'); // Change this to the appropriate path in your database
+        const snapshot = await get(postedByRef);
+        if (snapshot.exists()) {
+          const postedByData = snapshot.val();
+          setFormData((prevData) => ({
+            ...prevData,
+            postedBy: postedByData
+          }));
+        }
+      } catch (error) {
+        console.error('Error fetching postedBy:', error);
+      }
+    };
+
+    fetchPostedBy();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,12 +56,13 @@ const SubmitDetails = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Reference to the new child location for the form data in db1
     const newFormDataRef = ref(db1, 'formData');
     push(newFormDataRef, formData)
       .then(() => {
         console.log('Form data saved successfully.');
-        setShowMessage(true); // Show the confirmation message
+        setShowMessage(true);
+        // Reset form data to initial state
+        setFormData(initialFormData);
       })
       .catch((error) => {
         console.error('Error saving form data:', error);
@@ -46,19 +70,17 @@ const SubmitDetails = () => {
   };
 
   const handleGoHome = () => {
-    navigate('/job-seeker/ui'); // Navigate to job-seeker UI page
+    navigate('/job-seeker/ui');
   };
 
   return (
     <div className="submitDetails">
       <h1>Submit Details</h1>
       <form onSubmit={handleSubmit}>
-        {jobTitle && (
-          <p><strong>Job Title:</strong> {jobTitle}</p>
-        )}
-        {companyName && (
-          <p><strong>Company Name:</strong> {companyName}</p>
-        )}
+        {jobTitle && <p><strong>Job Title:</strong> {jobTitle}</p>}
+        {companyName && <p><strong>Company Name:</strong> {companyName}</p>}
+        {postedBy && <p><strong>Posted By:</strong> {postedBy}</p>}
+
         <label>
           Full Name:
           <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} required />
@@ -76,8 +98,8 @@ const SubmitDetails = () => {
           <input type="text" name="Skills" value={formData.Skills} onChange={handleChange} placeholder='Enter Skills here' required />
         </label>
         <label>
-          Linkedin URL:
-          <input type="text" name="LinkedInURL" value={formData.LinkedInURL} onChange={handleChange} placeholder="Paste linkedin URL" required />
+          LinkedIn URL:
+          <input type="text" name="LinkedInURL" value={formData.LinkedInURL} onChange={handleChange} placeholder="Paste LinkedIn URL" required />
         </label>
         <label>
           Resume:
@@ -105,9 +127,7 @@ const SubmitDetails = () => {
           )}
         </div>
       </form>
-      {showMessage && (
-        <div className="confirmationMessage">Form submitted successfully!</div>
-      )}
+      {showMessage && <div className="confirmationMessage">Form submitted successfully!</div>}
     </div>
   );
 };

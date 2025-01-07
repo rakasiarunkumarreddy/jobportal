@@ -101,7 +101,7 @@ const JobPosts = () => {
 
   return (
     <div>
-      <h1 style={{ fontSize: "30px", color: "white",textAlign:"center" }}>Job Seekers</h1>
+      <h1 style={{ fontSize: "30px", color: "white",textAlign:"center" ,marginTop:"10px"}}>Job Seekers</h1>
 
       {/* Search Bar */}
       <div className="search-container">

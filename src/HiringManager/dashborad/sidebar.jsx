@@ -1,34 +1,38 @@
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
+import HomeIcon from "@mui/icons-material/Home";
 import WorkIcon from "@mui/icons-material/Work";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import MailIcon from "@mui/icons-material/Mail";
 import LogoutIcon from "@mui/icons-material/Logout";
-
-
 
 export default function SidebarComp() {
   
   const navigate = useNavigate(); 
 
   const handleNavigation = (route) => {
-    navigate(route);
+    if (route === "/email") {
+      // Redirect to Gmail
+      window.location.href = "https://mail.google.com/";
+    } else {
+      navigate(route);
+    }
   };
   
   const menuItems = [
-    { text: "Profile", icon: <PersonIcon />, route: "/profile" },
-    { text: "Applicant Profiles", icon: <WorkIcon />, route: "/applied" },
-    { text: "Posted Jobs", icon: <PostAddIcon />, route: "/posted-jobs" },
-    { text: "Inbox", icon: <MailIcon />, route: "/inbox" },
+    { text: "Home", icon: <HomeIcon />, route: "/home" },
+    { text: "Profile", icon: <PersonIcon />, route: "/hiringpartner/home/profile" },
+    { text: "Applicant Profiles", icon: <WorkIcon />, route: "/hiringpartner/home/applicantsdata" },
+    { text: "Posted Jobs", icon: <PostAddIcon />, route: "/hiringpartner/home/posteddata" },
+    { text: "Send Mail", icon: <MailIcon />, route :"/email" },
   ];
 
   return (
     <div
       style={{
         width: "250px",
-        backgroundColor: "#333333",
+        backgroundColor: "#1976d2",
         color: "white",
         height: "100vh",
         display: "flex",
@@ -69,7 +73,7 @@ export default function SidebarComp() {
       <hr style={{ borderColor: "rgba(255, 255, 255, 0.3)" }} />
       <div style={{ textAlign: "center" }}>
         <button
-          onClick={() => handleNavigation("/hiring-manager/login")}
+          onClick={() => handleNavigation("/hiringpartner/login")}
           style={{
             display: "flex",
             alignItems: "center",
@@ -86,7 +90,7 @@ export default function SidebarComp() {
           onMouseOver={(e) => (e.target.style.backgroundColor = "#e60000")}
           onMouseOut={(e) => (e.target.style.backgroundColor = "#ff4d4d")}
         >
-          <LogoutIcon style={{ marginRight: "10px" }}  />
+          <LogoutIcon style={{ marginRight: "10px" }} />
           Logout
         </button>
       </div>

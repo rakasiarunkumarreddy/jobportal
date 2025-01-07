@@ -27,7 +27,7 @@
 
 .title {
   font-size: 2rem;
-  color: #333;
+  color: black;
   margin-bottom: 20px;
   text-align: center;
   animation: fadeInTitle 1s ease-out;

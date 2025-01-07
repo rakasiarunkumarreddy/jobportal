@@ -4,6 +4,8 @@ import PostButton from "../jobposting/postButton";
 import MainComp from "../dashborad/main";
 import JobData from "../jobposting/jobcard";
 import "./home.css";
+import DarkVariantExample from "../dashborad/carousal";
+import FooterComp from "../dashborad/footer";
 
 const HomePage = () => {
   const [filter, setFilter] = useState("");
@@ -16,9 +18,7 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
-      <div>
-        <NavbarComp />
-      </div>
+      <NavbarComp />
       <div className="mainPage">
         <PostButton />
         <MainComp />
@@ -32,9 +32,20 @@ const HomePage = () => {
           <button onClick={() => filterJobs("business")}>Business</button>
         </div>
         <div className="jobdata-container">
-          {showJobs ? <JobData value={filter} /> : <h3 style={{color:"white", padding:"20px"}}>Select a React Jobs</h3>}
+          {showJobs ? (
+            <JobData value={filter} />
+          ) : (
+            <h3 style={{ color: "white", padding: "20px" }}></h3>
+          )}
         </div>
       </div>
+      <div className="carousals-container">
+        <h1 style={{ color: "white", margin: "20px" }}>
+          Job Openings in Top Companies
+        </h1>
+        <DarkVariantExample />
+      </div>
+      <FooterComp />
     </div>
   );
 };

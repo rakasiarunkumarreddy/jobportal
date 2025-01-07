@@ -3,6 +3,7 @@ import React from "react";
 import "./Body.css";
 import Content from "./content/Content";
 
+
 const Body = ({ searchTerm }) => {
   return (
     <div className="body-container">

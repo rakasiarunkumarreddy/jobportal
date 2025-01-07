@@ -34,7 +34,7 @@ const JobDescription = () => {
           className="applyButton"
           onClick={() =>
             navigate(`/submit-details`, {
-              state: { jobTitle: jobDetails.jobTitle, companyName: jobDetails.companyName },
+              state: { jobTitle: jobDetails.jobTitle, companyName: jobDetails.companyName, postedBy: jobDetails.postedBy },
             })
           }
         >
@@ -42,25 +42,13 @@ const JobDescription = () => {
         </button>
       </div>
       <div>
-        <p>
-          <strong>Company:</strong> {jobDetails.companyName}
-        </p>
-        <p>
-          <strong>Description: </strong>
-          {jobDetails.jobDescription}
-        </p>
-        <p>
-          <strong>JobType:</strong> {jobDetails.jobType}
-        </p>
-        <p>
-          <strong>Location:</strong> {jobDetails.location}
-        </p>
-        <p>
-          <strong>Date:</strong> {jobDetails.postDate}
-        </p>
-        <p>
-          <strong>Skills:</strong> {jobDetails.skills}
-        </p>
+        <p><strong>Company:</strong> {jobDetails.companyName}</p>
+        <p><strong>PostedBy: </strong>{jobDetails.postedBy}</p>
+        <p><strong>Description: </strong>{jobDetails.jobDescription}</p>
+        <p><strong>JobType:</strong> {jobDetails.jobType}</p>
+        <p><strong>Location:</strong> {jobDetails.location}</p>
+        <p><strong>Date:</strong> {jobDetails.postDate}</p>
+        <p><strong>Skills:</strong> {jobDetails.skills}</p>
       </div>
     </div>
   );

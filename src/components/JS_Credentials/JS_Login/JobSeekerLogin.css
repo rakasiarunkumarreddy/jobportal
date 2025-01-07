@@ -6,6 +6,8 @@
   height: 100vh;
   background-color: #f0f4f8;
   animation: fadeIn 1s ease-in-out;
+  width:100%;
+ 
 }
 
 .formContainer {
@@ -15,7 +17,7 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   text-align: center;
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   animation: slideDown 0.8s ease-out;
 }
 

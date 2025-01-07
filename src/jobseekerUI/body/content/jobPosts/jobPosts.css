@@ -64,7 +64,7 @@
 button {
   background-color: #007bff;
   color: white;
-  padding: 10px 20px;
+  padding: 5px 20px;
   border: none;
   border-radius: 5px; /* Rounded button */
   cursor: pointer;
@@ -104,7 +104,7 @@ button:hover {
   border-radius: 10px;
   border-color: blue;
   min-width: 150px;
-  padding:10px
+  padding:5px
 }
 
 /* Responsive Design */
