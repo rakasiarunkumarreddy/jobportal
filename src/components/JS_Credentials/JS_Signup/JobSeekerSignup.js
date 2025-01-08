@@ -24,8 +24,35 @@ const JobSeekerSignup = () => {
     });
   };
 
+  const validateEmail = (email) => {
+    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return re.test(String(email).toLowerCase());
+  };
+
+  const validateMobile = (mobile) => {
+    const re = /^\d{10}$/;
+    return re.test(String(mobile));
+  };
+
+  const validatePassword = (password) => {
+    return password.length >= 8;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateEmail(formData.email)) {
+      alert("Invalid email format!");
+      return;
+    }
+    if (!validateMobile(formData.mobile)) {
+      alert("Mobile number should be 10 digits!");
+      return;
+    }
+    if (!validatePassword(formData.password)) {
+      alert("Password should be at least 8 characters long!");
+      return;
+    }
 
     try {
       const databaseUrl =
