@@ -5,7 +5,7 @@ import Body from "./body/body";
 import "./JSApp.css";
 import FooterComp from "../HiringManager/dashborad/footer"
 
-const App = () => {
+const JSApp = () => {
   const [searchTerm, setSearchTerm] = useState(""); // State to hold search term
 
   // Function to update the search term
@@ -28,4 +28,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default JSApp;

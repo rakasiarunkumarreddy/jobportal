@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import LandingPage from "../home/landingpage";
 // import HiringPartnerSignup from "../hiringPartner/signup/hiringptnrsignup";
 // import JobSeekerSignup from "../jobseeker/signupjobseeker";
-// import LoginPage from "../../components/HM_Credentials/HM_Login/HiringManagerLogin";
+import LoginPage from "../../components/HM_Credentials/HM_Login/HiringManagerLogin";
 import HomePage from "../home/home";
 // import JobSeekerLoginPage from "../jobseeker/jobseekerlogin";
 import JobPostingForm from "../jobposting/jobposting";
@@ -29,7 +29,7 @@ export default function StartRouting() {
               element={<HiringPartnerSignup />}
             /> */}
             {/* <Route path="/job-seeker/signup" element={<JobSeekerSignup />} /> */}
-            {/* <Route path="/hiringpartner/login" element={<LoginPage />} /> */}
+            <Route path="/hiringpartner/login" element={<LoginPage />} />
             {/* <Route path="/job-seeker/login" element={<JobSeekerLoginPage />} /> */}
             <Route path="/home" element={<HomePage />} />
             <Route path="/home/jobposting" element={<JobPostingForm />} />

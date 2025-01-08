@@ -26,19 +26,44 @@ const JobSeekerSignup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const databaseUrl =
         "https://jobseeker-application-default-rtdb.firebaseio.com/jobSeekers.json";
 
-      // Submit data to Firebase
-      await axios.post(databaseUrl, formData);
+      // Check if email already exists
+      const response = await axios.get(databaseUrl);
+      const existingData = response.data;
 
-      // Show success alert and navigate to the login page
-      setAlertMessage("Signup Successful");
-      setShowAlert(true);
-      setTimeout(() => {
-        navigate("/job-seeker/login");
-      }, 3000);
+      let emailAlreadyExists = false;
+      for (let key in existingData) {
+        if (existingData[key].email === formData.email) {
+          emailAlreadyExists = true;
+          break;
+        }
+      }
+
+      if (emailAlreadyExists) {
+        setAlertMessage("User already signed up with this email!");
+        setShowAlert(true);
+        // Clear input fields
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+          mobile: "",
+        });
+      } else {
+        // Submit data to Firebase
+        await axios.post(databaseUrl, formData);
+
+        // Show success alert and navigate to the login page
+        setAlertMessage("Signup Successful");
+        setShowAlert(true);
+        setTimeout(() => {
+          navigate("/job-seeker/login");
+        }, 3000);
+      }
     } catch (err) {
       setError("Error submitting data. Please try again.");
       setAlertMessage("Signup failed! Please try again.");

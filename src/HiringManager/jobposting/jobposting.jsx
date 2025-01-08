@@ -114,8 +114,8 @@ export default function JobPostingForm() {
 
   useEffect(() => {
     const userProfile = JSON.parse(localStorage.getItem("userProfile"));
-    if (userProfile && userProfile.fullName) {
-      setFormData((prev) => ({ ...prev, postedBy: userProfile.fullName }));
+    if (userProfile && userProfile.name) {
+      setFormData((prev) => ({ ...prev, postedBy: userProfile.name }));
     }
   }, []);
 

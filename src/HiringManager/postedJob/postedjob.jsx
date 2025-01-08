@@ -7,7 +7,7 @@ import NavbarComp from "../dashborad/navbar";
 import FooterComp from "../dashborad/footer";
 
 export default function PostedData() {
-  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
   const [jobData, setJobData] = useState([]);
   const [messageApi, contextHolder] = message.useMessage();
   const navigate = useNavigate();
@@ -19,8 +19,8 @@ export default function PostedData() {
           "https://job-portal-fdc41-default-rtdb.firebaseio.com/jobpostingData.json";
         const response = await axios.get(dataUrl);
         const userProfile = JSON.parse(localStorage.getItem("userProfile"));
-        if (userProfile && userProfile.fullName) {
-          setUserName(userProfile.fullName);
+        if (userProfile && userProfile.name) {
+          setUserEmail(userProfile.name);
         }
         setJobData(response.data);
       } catch (error) {
@@ -66,10 +66,13 @@ export default function PostedData() {
   const filteredJobs = useMemo(() => {
     if (!jobData) return [];
     return Object.entries(jobData).filter(([key, job]) => {
-      if (!userName) return true;
-      return job.postedBy.toLowerCase().includes(userName.toLowerCase());
+      if (!userEmail) return true;
+      return (
+        job.postedBy &&
+        job.postedBy.toLowerCase() === userEmail.toLowerCase()
+      );
     });
-  }, [jobData]);
+  }, [jobData, userEmail]);
 
   return (
     <>

@@ -1,14 +1,18 @@
-// src/components/HiringManagerLogin.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import "./HiringManagerLogin.css"; // Import the CSS file
+// import axios from "axios";
+import { db2, ref, get } from "../../../firebase"; // Import firebase config for db2
+import "./HiringManagerLogin.css";
+import Alert from "../../alert/Alert"; // Import the Alert component
 
 const HiringManagerLogin = () => {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
+
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -23,10 +27,9 @@ const HiringManagerLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get(
-        "https://jobseeker-application-default-rtdb.firebaseio.com/hiringManagers.json"
-      );
-      const data = response.data;
+      const dbRef = ref(db2, "hiringpartner");
+      const snapshot = await get(dbRef);
+      const data = snapshot.val();
 
       const user = Object.values(data).find(
         (item) =>
@@ -35,14 +38,20 @@ const HiringManagerLogin = () => {
       );
 
       if (user) {
-        alert("Login successful!");
-        navigate("/hiring-manager/ui");
+        localStorage.setItem("userProfile", JSON.stringify(user));
+        setAlertMessage("Login successful!");
+        setShowAlert(true);
+        setTimeout(() => {
+          navigate("/hiring-manager/ui");
+        }, 3000);
       } else {
-        alert("Invalid credentials!");
+        setAlertMessage("Invalid credentials!");
+        setShowAlert(true);
       }
     } catch (error) {
       console.error("Error during login:", error);
-      alert("Login failed! Please try again.");
+      setAlertMessage("Login failed! Please try again.");
+      setShowAlert(true);
     }
   };
 
@@ -74,6 +83,12 @@ const HiringManagerLogin = () => {
           </button>
         </form>
       </div>
+      {showAlert && (
+        <Alert
+          message={alertMessage}
+          onClose={() => setShowAlert(false)}
+        />
+      )}
     </div>
   );
 };

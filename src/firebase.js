@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, updateDoc } from "firebase/firestore";
-import { getDatabase, ref, get, push, update } from "firebase/database";
+import { getDatabase, ref, get, push, update, child } from "firebase/database";
 import { getStorage, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const firebaseConfig1 = {
@@ -23,11 +23,14 @@ const firebaseConfig2 = {
   appId: "YOUR_APP_ID",
 };
 
+// Initialize Firebase apps
 const app1 = initializeApp(firebaseConfig1, "app1");
 const app2 = initializeApp(firebaseConfig2, "app2");
 
+// Firestore, Realtime Database, and Storage references
 const db1 = getFirestore(app1);
 const db2 = getDatabase(app2);
 const storage = getStorage(app1);
 
-export { db1, db2, ref, get, push, update, storage, doc, updateDoc, uploadBytes, getDownloadURL };
+// Export references for use in your components
+export { app1, app2, db1, db2, ref, get, push, update, storage, doc, updateDoc, uploadBytes, getDownloadURL, child };

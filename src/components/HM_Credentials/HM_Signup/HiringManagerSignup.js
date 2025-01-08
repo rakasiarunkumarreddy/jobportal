@@ -1,8 +1,8 @@
-// src/components/HiringManagerSignup.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import "./HiringManagerSignup.css"; // Import the CSS file
+import { db2, ref, push, get, child } from "../../../firebase"; // Import firebase config for db2
+import "./HiringManagerSignup.css";
+import Alert from "../../alert/Alert"; // Import the Alert component
 
 const HiringManagerSignup = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +14,10 @@ const HiringManagerSignup = () => {
     confirmPassword: "",
     role: "Hiring Manager",
   });
+
+  const [emailExists, setEmailExists] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -33,21 +37,46 @@ const HiringManagerSignup = () => {
     }
 
     try {
-      const response = await axios.post(
-        "https://jobseeker-application-default-rtdb.firebaseio.com/hiringManagers.json",
-        formData
-      );
-      console.log("Data submitted:", response.data);
-      alert("Signup successful!");
-      navigate("/hiring-manager/login");
+      const dbRef = ref(db2, "hiringpartner");
+      const snapshot = await get(child(dbRef, "/"));
+      const existingData = snapshot.val();
+
+      // Check if email already exists
+      let emailAlreadyExists = false;
+      for (let key in existingData) {
+        if (existingData[key].email === formData.email) {
+          emailAlreadyExists = true;
+          break;
+        }
+      }
+
+      if (emailAlreadyExists) {
+        setAlertMessage("User already signed up with this email!");
+        setShowAlert(true);
+        setEmailExists(true);
+        // Clear input fields
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          password: "",
+          confirmPassword: "",
+          role: "Hiring Manager",
+        });
+      } else {
+        await push(dbRef, formData);
+        setAlertMessage("Signup successful!");
+        setShowAlert(true);
+        setTimeout(() => {
+          navigate("/hiring-manager/login");
+        }, 3000);
+      }
     } catch (error) {
       console.error("Error submitting data:", error);
-      alert("Signup failed! Please try again.");
+      setAlertMessage("Signup failed! Please try again.");
+      setShowAlert(true);
     }
-  };
-
-  const goToLoginPage = () => {
-    navigate("/hiring-manager/login");
   };
 
   return (
@@ -115,11 +144,17 @@ const HiringManagerSignup = () => {
         </form>
         <p className="loginPrompt">
           Already a user?{" "}
-          <button className="linkButton" onClick={goToLoginPage}>
+          <button className="linkButton" onClick={() => navigate("/hiring-manager/login")}>
             Login
           </button>
         </p>
       </div>
+      {showAlert && (
+        <Alert
+          message={alertMessage}
+          onClose={() => setShowAlert(false)}
+        />
+      )}
     </div>
   );
 };

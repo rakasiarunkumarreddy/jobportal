@@ -1,7 +1,7 @@
 import Carousel from 'react-bootstrap/Carousel';
-import TopCompanies from "../../assets/Topcompany.jpg";
-import Support from "../../assets/customerservice.jpg";
-import FastGrow from "../../assets/hrs.avif";
+import TopCompanies from "../assets/Topcompany.jpg";
+import Support from "../assets/customerservice.jpg";
+import FastGrow from "../assets/hrs.avif";
 import "./carouselStyles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";

@@ -51,8 +51,8 @@ export default function MainComp() {
           "https://job-portal-fdc41-default-rtdb.firebaseio.com/jobpostingData.json";
         const response = await axios.get(dataUrl);
         const userProfile = JSON.parse(localStorage.getItem("userProfile"));
-        if (userProfile && userProfile.fullName) {
-          setUserName(userProfile.fullName);
+        if (userProfile && userProfile.name) {
+          setUserName(userProfile.name);
         }
         setJobData(response.data);
       } catch (error) {
