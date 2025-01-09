@@ -1,17 +1,15 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
 import { message, Modal } from "antd";
 import axios from "axios";
 import "./AppliedJobs.css";
 import FooterComp from "../../../HiringManager/dashborad/footer";
-import Header from "../Header"
+import Header from "../Header";
 
 const AppliedJobs = () => {
   const [jobSeekerLoginDetails, setJobSeekerLoginDetails] = useState([]);
   const [formData, setFormData] = useState([]);
   const [matchedData, setMatchedData] = useState([]);
   const [messageApi, contextHolder] = message.useMessage();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,101 +18,81 @@ const AppliedJobs = () => {
           "https://jobseeker-application-default-rtdb.firebaseio.com/jobSeekerLoginDetails.json";
         const profileUrl =
           "https://jobseeker-application-default-rtdb.firebaseio.com/formData.json";
-
         const [loginResponse, profileResponse] = await Promise.all([
           axios.get(loginUrl),
           axios.get(profileUrl),
         ]);
-
         const loginData = Object.values(loginResponse.data || {});
         const profileData = Object.values(profileResponse.data || {});
-
         setJobSeekerLoginDetails(loginData);
         setFormData(profileData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-
     fetchData();
   }, []);
 
   useEffect(() => {
-    const matched = jobSeekerLoginDetails.map(loginDetails =>
-      formData.find(form => form.email === loginDetails.email)
-    ).filter(Boolean);
-
+    const matched = jobSeekerLoginDetails
+      .map((loginDetails) =>
+        formData.find((form) => form.email === loginDetails.email)
+      )
+      .filter(Boolean);
     setMatchedData(matched);
   }, [jobSeekerLoginDetails, formData]);
-
-  const handleJobDetails = (id) => {
-    navigate(`/jobseeker/home/jobdetails/${id}`);
-  };
 
   const handleDeleteJob = async (jobKey) => {
     try {
       const deleteUrl = `https://jobseeker-application-default-rtdb.firebaseio.com/formData/${jobKey}.json`;
       await axios.delete(deleteUrl);
-
-      // Update the formData state after successful deletion
       setFormData((prevData) => {
-        const updatedData = { ...prevData };
-        delete updatedData[jobKey];
+        const updatedData = prevData.filter((data) => data.key !== jobKey);
         return updatedData;
       });
-
-      message.success("Job application deleted successfully!");
+      message.success("Job application withdrawn successfully!");
     } catch (error) {
-      console.error("Error deleting job application:", error);
-      message.error("Failed to delete the job application. Please try again.");
+      console.error("Error withdrawing job application:", error);
+      message.error("Failed to withdraw the job application. Please try again.");
     }
   };
 
   const confirmDelete = (jobKey) => {
     Modal.confirm({
-      title: "Are you sure you want to delete this job application?",
+      title: "Are you sure you want to withdraw this job application?",
       content: "This action cannot be undone.",
-      okText: "Yes, Delete",
+      okText: "Yes, Withdraw",
       cancelText: "Cancel",
       onOk: () => handleDeleteJob(jobKey),
     });
   };
 
-  const filteredJobs = useMemo(() => {
-    if (!formData) return [];
-    return Object.entries(formData).filter(([key, job]) =>
-      matchedData.includes(job)
-    );
-  }, [formData, matchedData]);
-
   return (
     <>
-    <Header/>
+      <Header />
       <div className="job-container">
         {contextHolder}
-        {filteredJobs.length > 0 ? (
-          filteredJobs.map(([key, job]) => (
+        {formData.length > 0 ? (
+          formData.map((job, key) => (
             <div key={key} className="job-card">
               <div className="job-header">
                 <div>
-                  <h3 className="company-name">{job.companyName}</h3>
+                  <h3 className="company-name">{job.companyName} - Applied</h3>
                   <p className="job-location">{job.location}</p>
                 </div>
               </div>
               <h2 className="job-title">{job.jobTitle}</h2>
-              <p className="job-description">{job.description}</p>
+              <p className="job-description"><strong>Skills:</strong> {job.Skills}</p>
+              <p><strong>Full Name:</strong> {job.fullName}</p>
+              <p><strong>Email:</strong> {job.email}</p>
+              <p><strong>Resume:</strong> <a href={job.resumeUrl} target="_blank" rel="noopener noreferrer">View Resume</a></p>
+              <p><strong>LinkedIn:</strong> <a href={job.LinkedInURL} target="_blank" rel="noopener noreferrer">Profile</a></p>
               <div className="job-tags">
-                <span className="tag">Post Date: {job.postDate} </span>
+                <span className="tag">Experience: {job.experience}</span>
                 <span className="tag">Full Time</span>
-                <span className="tag">{job.salary} LPA</span>
+                <span className="tag">{job.phoneNumber}</span>
               </div>
               <div className="job-actions">
-                <button
-                  className="details-btn"
-                  onClick={() => handleJobDetails(key)}
-                >
-                  Details
-                </button>
                 <button
                   style={{
                     color: "white",
@@ -129,7 +107,7 @@ const AppliedJobs = () => {
                   }}
                   onClick={() => confirmDelete(key)}
                 >
-                  Delete Job
+                  Withdraw
                 </button>
               </div>
             </div>

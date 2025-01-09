@@ -1,4 +1,4 @@
-.applied-jobs {
+/* .applied-jobs {
     padding: 20px;
   }
   
@@ -6,5 +6,83 @@
     border: 1px solid #ccc;
     padding: 15px;
     margin: 10px 0;
+  }
+   */
+
+
+   .job-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow multiple cards to appear in rows */
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .job-card {
+    background-color:rgb(232, 228, 228);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    width: 30%; /* Set the width to 40% */
+    color: black;
+  }
+  
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .company-name {
+    font-size: 1.5em;
+    margin: 0;
+  }
+  
+  .job-title {
+    font-size: 1.2em;
+    margin: 10px 0;
+  }
+  
+  .job-description {
+    margin: 10px 0;
+  }
+  
+  .job-tags {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .tag {
+    background-color: white;
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin: 5px 5px 5px 0;
+  }
+  
+  .job-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .details-btn,
+  .delete-btn {
+    background-color:rgb(230, 235, 240);
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .delete-btn {
+    background-color: red;
+  }
+  
+  .company-name::after {
+    content: " - Applied";
+    color: green;
   }
   
