@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { db2, ref, push, get, child } from "../../../firebase"; // Import firebase config for db2
+import { ref, push, get, child } from "firebase/database";
+import { db1 } from "../../../firebase"; // Use the correct Firebase config for db1
 import "./HiringManagerSignup.css";
 import Alert from "../../alert/Alert"; // Import the Alert component
 
@@ -63,16 +64,18 @@ const HiringManagerSignup = () => {
     }
 
     try {
-      const dbRef = ref(db2, "hiringpartner");
+      const dbRef = ref(db1, "hiringpartner");
       const snapshot = await get(child(dbRef, "/"));
       const existingData = snapshot.val();
 
       // Check if email already exists
       let emailAlreadyExists = false;
-      for (let key in existingData) {
-        if (existingData[key].email === formData.email) {
-          emailAlreadyExists = true;
-          break;
+      if (existingData) {
+        for (let key in existingData) {
+          if (existingData[key].email === formData.email) {
+            emailAlreadyExists = true;
+            break;
+          }
         }
       }
 
@@ -96,7 +99,7 @@ const HiringManagerSignup = () => {
         setShowAlert(true);
         setTimeout(() => {
           navigate("/hiring-manager/login");
-        }, 3000);
+        }, 500);
       }
     } catch (error) {
       console.error("Error submitting data:", error);

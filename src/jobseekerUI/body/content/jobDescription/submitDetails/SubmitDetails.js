@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { db2, ref, push, get } from '../../../../../firebase';
+import { db1, ref, push, get } from '../../../../../firebase';
 import './submitDetails.css';
 
 const SubmitDetails = () => {
@@ -28,7 +28,7 @@ const SubmitDetails = () => {
   useEffect(() => {
     const fetchPostedBy = async () => {
       try {
-        const postedByRef = ref(db2, 'postedBy'); // Change this to the appropriate path in your database
+        const postedByRef = ref(db1, 'postedBy'); // Change this to the appropriate path in your database
         const snapshot = await get(postedByRef);
         if (snapshot.exists()) {
           const postedByData = snapshot.val();
@@ -56,7 +56,7 @@ const SubmitDetails = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newFormDataRef = ref(db2, 'formData');
+    const newFormDataRef = ref(db1, 'formData');
     push(newFormDataRef, formData)
       .then(() => {
         console.log('Form data saved successfully.');

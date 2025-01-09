@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { db2, ref, get } from "../../../../firebase";
+import { db1, ref, get } from "../../../../firebase";
 import "./jobPosts.css";
 
 const JobPosts = () => {
@@ -23,7 +23,7 @@ const JobPosts = () => {
   // Fetch job seekers from Firebase when the component mounts
   useEffect(() => {
     const fetchJobSeekers = async () => {
-      const jobSeekersRef = ref(db2, "jobpostingData");
+      const jobSeekersRef = ref(db1, "jobpostingData");
       const snapshot = await get(jobSeekersRef);
       if (snapshot.exists()) {
         const data = snapshot.val();

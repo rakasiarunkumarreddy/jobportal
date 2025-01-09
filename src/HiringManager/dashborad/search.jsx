@@ -18,7 +18,7 @@ export default function SearchingComp() {
       try {
         const dataUrl =
           process.env.REACT_APP_FIREBASE_URL ||
-          "https://job-portal-fdc41-default-rtdb.firebaseio.com/jobpostingData.json";
+          "https://jobseeker-application-default-rtdb.firebaseio.com/jobpostingData.json"; // Ensure you're using db1 URL
         const response = await axios.get(dataUrl);
         setJobData(response.data);
       } catch (error) {

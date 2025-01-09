@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { db2, ref, get, update } from "../../firebase";
+import { db1, ref, get, update } from "../../firebase";
 import { storage, uploadBytes, getDownloadURL } from "../../firebase";
 import "./ProfilePage.css";
 import NavbarComp from "../dashborad/navbar";
@@ -26,7 +26,7 @@ function ProfilePage() {
   useEffect(() => {
     const fetchUserData = async () => {
       if (userContext && userContext.email) {
-        const dbRef = ref(db2, "hiringpartner");
+        const dbRef = ref(db1, "hiringpartner");
         const snapshot = await get(dbRef);
         const data = snapshot.val();
 
@@ -69,7 +69,7 @@ function ProfilePage() {
         await uploadBytes(storageRef, profilePic);
         const downloadURL = await getDownloadURL(storageRef);
         userDetails.profilePic = downloadURL;
-        await update(ref(db2, `hiringpartner/${userContext.email}`), {
+        await update(ref(db1, `hiringpartner/${userContext.email}`), {
           profilePic: downloadURL,
         });
         setPreviewPic(downloadURL);
@@ -84,7 +84,7 @@ function ProfilePage() {
     setIsLoading(true);
     setMessage(null);
     try {
-      await update(ref(db2, `hiringpartner/${userContext.email}`), userDetails);
+      await update(ref(db1, `hiringpartner/${userContext.email}`), userDetails);
       await handleProfilePicUpload();
       setIsEditing(false);
       localStorage.setItem("userProfile", JSON.stringify(userDetails));

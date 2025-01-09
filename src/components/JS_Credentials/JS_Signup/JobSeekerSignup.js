@@ -89,7 +89,7 @@ const JobSeekerSignup = () => {
         setShowAlert(true);
         setTimeout(() => {
           navigate("/job-seeker/login");
-        }, 3000);
+        }, 500);
       }
     } catch (err) {
       setError("Error submitting data. Please try again.");

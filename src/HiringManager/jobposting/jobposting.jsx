@@ -129,7 +129,7 @@ export default function JobPostingForm() {
     const skillsArray = formData.skills.split(",").map((skill) => skill.trim());
     axios
       .post(
-        "https://job-portal-fdc41-default-rtdb.firebaseio.com/jobpostingData.json",
+        "https://jobseeker-application-default-rtdb.firebaseio.com/jobpostingData.json",
         { ...formData, skills: skillsArray }
       )
       .then(() => {

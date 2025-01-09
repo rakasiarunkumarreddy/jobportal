@@ -73,7 +73,7 @@ export default function SidebarComp() {
       <hr style={{ borderColor: "rgba(255, 255, 255, 0.3)" }} />
       <div style={{ textAlign: "center" }}>
         <button
-          onClick={() => handleNavigation("/hiringpartner/login")}
+          onClick={() => handleNavigation("/hiring-manager/login")}
           style={{
             display: "flex",
             alignItems: "center",

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { db2, ref, get } from "../../../../firebase";
+import { db1, ref, get } from "../../../../firebase";
 import "./jobDescription.css";
 
 const JobDescription = () => {
@@ -10,7 +10,7 @@ const JobDescription = () => {
 
   useEffect(() => {
     const fetchJobDetails = async () => {
-      const jobRef = ref(db2, `jobpostingData/${jobId}`);
+      const jobRef = ref(db1, `jobpostingData/${jobId}`);
       const snapshot = await get(jobRef);
       if (snapshot.exists()) {
         setJobDetails(snapshot.val());

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import axios from "axios";
-import { db2, ref, get } from "../../../firebase"; // Import firebase config for db2
+import { db1, ref, get } from "../../../firebase"; // Import firebase config for db1
 import "./HiringManagerLogin.css";
 import Alert from "../../alert/Alert"; // Import the Alert component
 
@@ -27,7 +27,7 @@ const HiringManagerLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const dbRef = ref(db2, "hiringpartner");
+      const dbRef = ref(db1, "hiringpartner");
       const snapshot = await get(dbRef);
       const data = snapshot.val();
 
@@ -43,7 +43,7 @@ const HiringManagerLogin = () => {
         setShowAlert(true);
         setTimeout(() => {
           navigate("/hiring-manager/ui");
-        }, 3000);
+        }, 500);
       } else {
         setAlertMessage("Invalid credentials!");
         setShowAlert(true);

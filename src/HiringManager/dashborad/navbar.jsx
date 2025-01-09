@@ -29,7 +29,7 @@ export default function NavbarComp() {
 
   const handleLogout = () => {
     setAnchorElUser(null);
-    navigate("/hiringpartner/login");
+    navigate("/hiring-manager/login");
   };
 
   const handlerSerach = (e) => {

@@ -14,7 +14,7 @@ import {
 import { FaEnvelope, FaLinkedin } from "react-icons/fa";
 import NavbarComp from "../dashborad/navbar";
 import FooterComp from "../dashborad/footer";
-import "./applicants.css"
+import "./applicants.css";
 
 const ApplicantsComp = () => {
   const [applicantsProfile, setApplicantsProfile] = useState([]);
@@ -29,7 +29,7 @@ const ApplicantsComp = () => {
         const response = await axios.get(applicantUrl);
 
         const jobPostUrl =
-          "https://job-portal-fdc41-default-rtdb.firebaseio.com/jobpostingData.json";
+          "https://jobseeker-application-default-rtdb.firebaseio.com/jobpostingData.json";
         const jobPostingResponse = await axios.get(jobPostUrl);
 
         setApplicantsProfile(Object.values(response.data || {}));
@@ -67,19 +67,6 @@ const ApplicantsComp = () => {
     console.log(`Email sent to: ${email}`);
   };
 
-  // const compared = useMemo(() => {
-  //   if (!postingData || !applicantsProfile) return [];
-
-  //   return postingData
-  //     .filter((job) => job.postedBy.toLowerCase() === userName.toLowerCase())
-  //     .map((job) => {
-  //       const matchedApplicants = applicantsProfile.filter(
-  //         (applicant) =>
-  //           job.jobTitle.toLowerCase() === applicant.jobTitle.toLowerCase()
-  //       );
-  //       return { ...job, applicants: matchedApplicants };
-  //     });
-  // }, [postingData, applicantsProfile, userName]);
   const compared = useMemo(() => {
     if (!postingData || !applicantsProfile) return [];
 
@@ -90,7 +77,6 @@ const ApplicantsComp = () => {
           // Ensure applicant has required fields
           if (
             applicant.jobTitle &&
-            applicant.postedBy &&
             userName &&
             userName.toLowerCase() === job.postedBy.toLowerCase() &&
             job.jobTitle.toLowerCase() === applicant.jobTitle.toLowerCase()
@@ -155,9 +141,8 @@ const ApplicantsComp = () => {
                       <Typography variant="body2">
                         Email: {applicant.email}
                       </Typography>
-
                       <Typography variant="body2">
-                        Status: <strong  style={{color:`${applicant.status=="Accepted"?"green":"red"}`}}>{applicant.status || "Pending"}</strong>
+                        Status: <strong style={{ color: `${applicant.status === "Accepted" ? "green" : "red"}` }}>{applicant.status || "Pending"}</strong>
                       </Typography>
                       <Box>
                         <Button variant="contained" color="primary">
@@ -229,7 +214,7 @@ const ApplicantsComp = () => {
                   </Card>
                 ))
               ) : (
-                <Typography variant="body2" style={{color:"white"}}>
+                <Typography variant="body2" style={{ color: "white" }}>
                   No applicants for this job yet.
                   {console.log("no applicants")}
                 </Typography>

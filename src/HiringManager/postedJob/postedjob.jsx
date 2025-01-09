@@ -16,7 +16,7 @@ export default function PostedData() {
     const fetchData = async () => {
       try {
         const dataUrl =
-          "https://job-portal-fdc41-default-rtdb.firebaseio.com/jobpostingData.json";
+          "https://jobseeker-application-default-rtdb.firebaseio.com/jobpostingData.json";
         const response = await axios.get(dataUrl);
         const userProfile = JSON.parse(localStorage.getItem("userProfile"));
         if (userProfile && userProfile.name) {
@@ -36,7 +36,7 @@ export default function PostedData() {
 
   const handleDeleteJob = async (jobKey) => {
     try {
-      const deleteUrl = `https://job-portal-fdc41-default-rtdb.firebaseio.com/jobpostingData/${jobKey}.json`;
+      const deleteUrl = `https://jobseeker-application-default-rtdb.firebaseio.com/jobpostingData/${jobKey}.json`;
       await axios.delete(deleteUrl);
 
       // Update the jobData state after successful deletion

@@ -158,6 +158,7 @@
   .item1 , .item2 {
     color: #fff;
     font-size:1.3em;
+    cursor:pointer
   }
   ul {
     padding-left: 0.5rem;
@@ -176,9 +177,7 @@
       margin:0px;
       padding:0px
     }
-    .search-bar{
-      display: none;
-    }
+   
     .nav-item{
       margin:5px;
     }

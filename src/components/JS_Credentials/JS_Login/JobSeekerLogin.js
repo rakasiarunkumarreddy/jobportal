@@ -55,7 +55,7 @@ const JobSeekerLogin = () => {
         setShowAlert(true); // Show the alert
         setTimeout(() => {
           navigate("/job-seeker/ui");
-        }, 3000); // Navigate after the alert disappears
+        }, 500); // Navigate after the alert disappears
       } else {
         setError("Invalid email or password");
       }
