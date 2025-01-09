@@ -1,46 +1,33 @@
 import React, { useState, useEffect } from "react";
-import "./Header.css"; // Importing the custom CSS for styling
-import Logo from "../../images/JOB.png";
+import WorkIcon from "@mui/icons-material/Work";
+import Avatar from "@mui/material/Avatar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Tooltip from "@mui/material/Tooltip";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Header.css";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [userImage, setUserImage] = useState(null); // State to store the uploaded image
-  const [userDetails, setUserDetails] = useState(null); // State to store user details
-
-  const handleMenuToggle = () => {
-    setMenuOpen((prev) => !prev);
-  };
-
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setUserImage(e.target.result); // Set the image as a data URL
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [userDetails, setUserDetails] = useState(null);
+  const [userImage, setUserImage] = useState(null); // State for uploaded image
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        // Fetch the email from the database under 'jobSeekerLoginDetails'
         const loginDetailsUrl =
           "https://jobseeker-application-default-rtdb.firebaseio.com/jobSeekerLoginDetails.json";
         const loginResponse = await axios.get(loginDetailsUrl);
         const loginDetails = Object.values(loginResponse.data || {});
-        
-        // Get the last login email
         const lastLogin = loginDetails[loginDetails.length - 1];
         const email = lastLogin ? lastLogin.email : null;
 
         if (email) {
-          // Fetch the user details from the 'jobSeekers' folder
           const databaseUrl =
             "https://jobseeker-application-default-rtdb.firebaseio.com/jobSeekers.json";
           const response = await axios.get(databaseUrl);
@@ -59,65 +46,116 @@ function Header() {
     fetchUserDetails();
   }, []);
 
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setUserImage(e.target.result); // Set uploaded image
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const handleLogout = () => {
+    setAnchorElUser(null);
+    navigate("/job-seeker/login");
+  };
+
   return (
-    <header className="header" style={{ backgroundColor: "rgb(41, 132, 222)" }}>
-      {/* Logo */}
-      <div className="header-logo">
-        <img
-          src={Logo} // Replace with your actual logo path
-          alt="Job Portal Logo"
-        />
+    <header className="navBar-Container">
+      {/* Logo Section */}
+      <div className="logo-section">
+        <IconButton style={{ color: "white" }}>
+          <WorkIcon fontSize="large" />
+        </IconButton>
+        <span>Job Portal</span>
       </div>
 
-      <div className="title" style={{ color: "white" }}>
-        <h2 style={{ fontSize: "20px" }}>JOB PORTAL</h2>
-      </div>
+      {/* Avatar Section */}
+      <div className="avatar-section">
+        <ul className="nav-item">
+        <li
+            className="item1"
+            onClick={() => {
+              navigate("/job-seeker/ui");
+            }}
+          >
+            Home
+          </li>
+          <li
+            className="item1"
+            onClick={() => {
+              navigate("/job-seeker/profile");
+            }}
+          >
+            Profile
+          </li>
+          <li
+            className="item2"
+            onClick={() => {
+              navigate("/jobseeker/appliedjobs");
+            }}
+          >
+            {" "}
+            Applied Jobs
+          </li>
+        </ul>
 
-      {/* Profile Image */}
-      <div className="header-profile">
-        <img
-          src={userImage || "https://tinyurl.com/2dnywp4w"} // Default profile image if not uploaded
-          alt="User Avatar"
-          className="profile-avatar"
-          onClick={handleMenuToggle}
-        />
-        {menuOpen && (
-          <div className="menu">
-            {/* User Details */}
-            {userDetails && (
-              <div className="menu-item">
-                <p><strong>Name:</strong> {userDetails.name}</p>
-                <p><strong>Email:</strong> {userDetails.email}</p>
-                <p><strong>Mobile:</strong> {userDetails.mobile}</p>
-              </div>
-            )}
-            <hr /> {/* Add a horizontal line for separation */}
-            
-            {/* Upload Image */}
-            <div className="menu-item">
-              <label htmlFor="upload-image">
-                Upload Image
-                <input
-                  id="upload-image"
-                  type="file"
-                  accept="image/*"
-                  style={{ display: "none" }}
-                  onChange={handleImageUpload}
-                />
-              </label>
-            </div>
-            
-            {/* Sign Out */}
-            <div
-              className="menu-item"
-              onClick={() => {
-                navigate("/job-seeker/login");
-              }}
-            >
-              Sign Out
-            </div>
-          </div>
-        )}
+        <Tooltip title="Open settings">
+          <IconButton onClick={handleOpenUserMenu} sx={{ p: 1.8 }}>
+            <Avatar src={userImage || "https://tinyurl.com/2dnywp4w"} />
+          </IconButton>
+        </Tooltip>
+        <Menu
+          sx={{ mt: "45px" }}
+          id="menu-appbar"
+          anchorEl={anchorElUser}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={Boolean(anchorElUser)}
+          onClose={handleCloseUserMenu}
+        >
+          {/* User Details */}
+          {userDetails && (
+            <MenuItem>
+              <Typography>
+                <strong>{userDetails.name}</strong>
+              </Typography>
+            </MenuItem>
+          )}
+          <MenuItem>
+            <label htmlFor="upload-image" style={{ cursor: "pointer" }}>
+              Upload Image
+              <input
+                id="upload-image"
+                type="file"
+                accept="image/*"
+                style={{ display: "none" }}
+                onChange={handleImageUpload}
+              />
+            </label>
+          </MenuItem>
+          
+          <MenuItem onClick={handleLogout}>
+            <Typography>Log Out</Typography>
+          </MenuItem>
+        </Menu>
       </div>
     </header>
   );

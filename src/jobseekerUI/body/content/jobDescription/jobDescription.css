@@ -39,18 +39,57 @@
   margin: 10px 0;
 }
 
-@media (max-width: 425px) {
+
+.skills{
+  width:1000px;
+  overflow:auto
+}
+
+@media (max-width:768px){
+  .skills{
+    width:400px;
+    overflow:auto
+  }
+}
+
+@media (max-width: 430px) {
+  
+  .skills{
+    width:400px;
+    overflow:auto
+  }
+  .jobDescription{
+    width:100%%
+  }
+}
+
+
+@media (max-width: 380px) {
   .header {
-    width: 90%;
+    width: 100%;
+    max-width:1000px
+  }
+  .skills{
+    width:330px;
+    overflow:auto
+  }
+  .jobDescription{
+    width:100%
   }
 }
 
 @media (max-width: 320px) {
+ 
   .header {
-    width: 65%;
-    margin-right: 200px;
+    width: 100%;
+    max-width:1000px;
   }
-  .applyButton{
-    margin-left:40px
-  }
+    .skills{
+      width:300px;
+      overflow:auto
+    }
+    .jobDescription{
+      width:100%%
+    }
+  
 }

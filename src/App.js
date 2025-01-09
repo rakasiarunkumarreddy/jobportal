@@ -10,6 +10,8 @@ import JobSeekerUI from "./components/JobSeekerUI";
 import JobPosts from "./jobseekerUI/body/content/jobPosts/JobPosts"; // Corrected path
 import JobDescription from "./jobseekerUI/body/content/jobDescription/JobDescription"; // Corrected path
 import SubmitDetails from "./jobseekerUI/body/content/jobDescription/submitDetails/SubmitDetails"; // Corrected path
+import AppliedJobs from "./jobseekerUI/header/appliedJobs/AppliedJobs";
+import JbProfilePage from "./jobseekerUI/header/profilePage/profile"
 
 const App = () => {
   return (
@@ -31,6 +33,10 @@ const App = () => {
           element={<JobDescription />}
         />
         <Route path="/submit-details" element={<SubmitDetails />} />
+        <Route path="/jobseeker/appliedjobs" element={<AppliedJobs />} />
+        <Route path="/job-seeker/profile" element={<JbProfilePage />} />
+
+        
       </Routes>
     </Router>
   );
