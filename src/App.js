@@ -12,6 +12,9 @@ import JobDescription from "./jobseekerUI/body/content/jobDescription/JobDescrip
 import SubmitDetails from "./jobseekerUI/body/content/jobDescription/submitDetails/SubmitDetails"; // Corrected path
 import AppliedJobs from "./jobseekerUI/header/appliedJobs/AppliedJobs";
 import JbProfilePage from "./jobseekerUI/header/profilePage/profile"
+import Guest from "./components/guestPage/Guest"
+import JobSeekerGuestLogin from "./components/guestPage/jobSeekerGuestLogin";
+import HiringManagerGuestLogin from "./components/guestPage/hiringManagerGuestLogin";
 
 const App = () => {
   return (
@@ -35,6 +38,9 @@ const App = () => {
         <Route path="/submit-details" element={<SubmitDetails />} />
         <Route path="/jobseeker/appliedjobs" element={<AppliedJobs />} />
         <Route path="/job-seeker/profile" element={<JbProfilePage />} />
+        <Route path="/guest" element={<Guest/>}/>
+        <Route path="/guest/job-seeker" element={<JobSeekerGuestLogin/>}/>
+        <Route path="/guest/hiring-manager" element={<HiringManagerGuestLogin/>}/>
 
         
       </Routes>

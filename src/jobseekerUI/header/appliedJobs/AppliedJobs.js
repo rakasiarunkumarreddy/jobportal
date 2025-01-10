@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { message, Modal } from "antd";
 import axios from "axios";
 import "./AppliedJobs.css";
@@ -23,7 +23,9 @@ const AppliedJobs = () => {
           axios.get(profileUrl),
         ]);
         const loginData = Object.values(loginResponse.data || {});
-        const profileData = Object.values(profileResponse.data || {});
+        const profileData = Object.entries(profileResponse.data || {}).map(
+          ([key, value]) => ({ key, ...value })
+        );
         setJobSeekerLoginDetails(loginData);
         setFormData(profileData);
       } catch (error) {
@@ -46,10 +48,7 @@ const AppliedJobs = () => {
     try {
       const deleteUrl = `https://jobseeker-application-default-rtdb.firebaseio.com/formData/${jobKey}.json`;
       await axios.delete(deleteUrl);
-      setFormData((prevData) => {
-        const updatedData = prevData.filter((data) => data.key !== jobKey);
-        return updatedData;
-      });
+      setFormData((prevData) => prevData.filter((data) => data.key !== jobKey));
       message.success("Job application withdrawn successfully!");
     } catch (error) {
       console.error("Error withdrawing job application:", error);
@@ -73,8 +72,8 @@ const AppliedJobs = () => {
       <div className="job-container">
         {contextHolder}
         {formData.length > 0 ? (
-          formData.map((job, key) => (
-            <div key={key} className="job-card">
+          formData.map((job) => (
+            <div key={job.key} className="job-card">
               <div className="job-header">
                 <div>
                   <h3 className="company-name">{job.companyName} - Applied</h3>
@@ -105,7 +104,7 @@ const AppliedJobs = () => {
                     cursor: "pointer",
                     transition: "backgroundColor 0.3s, color 0.3s",
                   }}
-                  onClick={() => confirmDelete(key)}
+                  onClick={() => confirmDelete(job.key)}
                 >
                   Withdraw
                 </button>
