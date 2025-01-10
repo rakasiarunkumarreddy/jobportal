@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, TextField, Typography, Paper, Link } from "@mui/material";
 import axios from "axios";
-import "./styles.css"; // Import the CSS file
+import "./hiringManagerGuest.css"; // Import the CSS file
 
 const HiringManagerGuestLogin = () => {
   const [email, setEmail] = useState("");
