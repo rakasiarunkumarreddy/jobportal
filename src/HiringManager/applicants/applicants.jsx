@@ -1,14 +1,11 @@
 import axios from "axios";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Typography,
   Card,
   CardContent,
   Button,
-  List,
-  ListItem,
-  Divider,
   IconButton,
 } from "@mui/material";
 import { FaEnvelope, FaLinkedin } from "react-icons/fa";
@@ -18,7 +15,6 @@ import "./applicants.css";
 
 const ApplicantsComp = () => {
   const [applicantsProfile, setApplicantsProfile] = useState([]);
-  const [postingData, setPostingData] = useState([]);
   const [userName, setUserName] = useState("");
 
   useEffect(() => {
@@ -28,15 +24,14 @@ const ApplicantsComp = () => {
           "https://jobseeker-application-default-rtdb.firebaseio.com/formData.json";
         const response = await axios.get(applicantUrl);
 
-        const jobPostUrl =
-          "https://jobseeker-application-default-rtdb.firebaseio.com/jobpostingData.json";
-        const jobPostingResponse = await axios.get(jobPostUrl);
+        console.log("Fetched Applicants Data:", response.data);
 
         setApplicantsProfile(Object.values(response.data || {}));
-        setPostingData(Object.values(jobPostingResponse.data || {}));
         const userProfile = JSON.parse(localStorage.getItem("userProfile"));
-        if (userProfile && userProfile.fullName) {
-          setUserName(userProfile.fullName);
+        console.log("User Profile:", userProfile);
+        if (userProfile && userProfile.name) {
+          setUserName(userProfile.name);
+          console.log("User Name:", userProfile.name);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -46,7 +41,7 @@ const ApplicantsComp = () => {
     fetchingData();
   }, []);
 
-  const updateStatus = async (jobId, applicantId, status) => {
+  const updateStatus = async (applicantId, status) => {
     try {
       const url = `https://jobseeker-application-default-rtdb.firebaseio.com/formData/${applicantId}.json`;
       const response = await axios.patch(url, { status });
@@ -67,158 +62,100 @@ const ApplicantsComp = () => {
     console.log(`Email sent to: ${email}`);
   };
 
-  const compared = useMemo(() => {
-    if (!postingData || !applicantsProfile) return [];
+  const filteredApplicants = applicantsProfile.filter(
+    (applicant) => applicant.postedBy && applicant.postedBy.toLowerCase() === userName.toLowerCase()
+  );
 
-    return postingData
-      .filter((job) => job.jobTitle && job.postedBy) // Ensure job has required fields
-      .map((job) => {
-        const matchedApplicants = applicantsProfile.filter((applicant) => {
-          // Ensure applicant has required fields
-          if (
-            applicant.jobTitle &&
-            userName &&
-            userName.toLowerCase() === job.postedBy.toLowerCase() &&
-            job.jobTitle.toLowerCase() === applicant.jobTitle.toLowerCase()
-          ) {
-            return true;
-          }
-          return false;
-        });
-
-        return matchedApplicants.length > 0
-          ? { ...job, applicants: matchedApplicants }
-          : null;
-      })
-      .filter(Boolean); // Remove null entries
-  }, [postingData, applicantsProfile, userName]);
+  console.log("Filtered Applicants:", filteredApplicants);
 
   return (
     <div style={{ backgroundColor: "rgb(2, 73, 108)", width: "100%" }}>
       <NavbarComp />
       <div className="box-container">
-        {compared.map((job) => (
-          <Card key={job.id} sx={{ marginBottom: "20px", borderRadius: "8px" }}>
+        {filteredApplicants.map((applicant) => (
+          <Card key={applicant.id} sx={{ marginBottom: "20px", borderRadius: "8px" }}>
             <CardContent>
               <Typography variant="h4" gutterBottom>
-                {job.jobTitle}
+                {applicant.jobTitle}
               </Typography>
               <Typography variant="h6" gutterBottom>
-                 {job.companyName}
+                {applicant.companyName}
               </Typography>
               <Typography variant="body1" gutterBottom>
-                {job.jobType || "Job Type Not Specified"}
+                Email: {applicant.email}
               </Typography>
               <Typography variant="body1" gutterBottom>
-                Posted By: {job.postedBy}
+                Phone: {applicant.phoneNumber}
               </Typography>
-              <List>
-                {(job.requirements || []).map((req, index) => (
-                  <ListItem key={index} disablePadding>
-                    {req}
-                  </ListItem>
-                ))}
-              </List>
-              <Divider sx={{ marginY: "10px" }} />
-              <Typography variant="h6" gutterBottom>
-                Applicants
+              <Typography variant="body1" gutterBottom>
+                Status: <strong style={{ color: `${applicant.status === "Accepted" ? "green" : "red"}` }}>{applicant.status || "Pending"}</strong>
               </Typography>
-              {job.applicants && job.applicants.length > 0 ? (
-                job.applicants.map((applicant) => (
-                  <Card
-                    key={applicant.id}
-                    sx={{
-                      marginBottom: "10px",
-                      padding: "10px",
-                      border: "1px solid #ccc",
-                      borderRadius: "8px",
-                    }}
+              <Box>
+                <Button variant="contained" color="primary">
+                  <a
+                    href={applicant.resumeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none", color: "white" }}
                   >
-                    <CardContent>
-                      <Typography variant="subtitle1">
-                        {applicant.name}
-                      </Typography>
-                      <Typography variant="body2">
-                        Email: {applicant.email}
-                      </Typography>
-                      <Typography variant="body2">
-                        Status: <strong style={{ color: `${applicant.status === "Accepted" ? "green" : "red"}` }}>{applicant.status || "Pending"}</strong>
-                      </Typography>
-                      <Box>
-                        <Button variant="contained" color="primary">
-                          <a
-                            href={applicant.resumeUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{ textDecoration: "none", color: "white" }}
-                          >
-                            View Resume
-                          </a>
-                        </Button>
-                        <Button
-                          variant="contained"
-                          color="info"
-                          sx={{ margin: "10px" }}
-                          startIcon={<FaLinkedin />}
-                        >
-                          <a
-                            href={applicant.LinkedInURL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{ textDecoration: "none", color: "white"}}
-                          >
-                            LinkedIn
-                          </a>
-                        </Button>
-                      </Box>
-                      <Box
-                        sx={{
-                          marginTop: "10px",
-                          display: "flex",
-                          gap: "10px",
-                        }}
-                      >
-                        <Button
-                          variant="contained"
-                          color="success"
-                          onClick={() =>
-                            updateStatus(job.id, applicant.id, "Accepted")
-                          }
-                        >
-                          Accept
-                        </Button>
-                        <Button
-                          variant="contained"
-                          color="error"
-                          onClick={() =>
-                            updateStatus(job.id, applicant.id, "Rejected")
-                          }
-                          disabled={applicant.status === "Accepted"}
-                          sx={{
-                            display:
-                              applicant.status === "Accepted"
-                                ? "none"
-                                : "inline-block",
-                          }}
-                        >
-                          Reject
-                        </Button>
-                        <IconButton
-                          color="primary"
-                          onClick={() => sendEmail(applicant.email)}
-                        >
-                          <FaEnvelope />
-                        </IconButton>
-                      </Box>
-                    </CardContent>
-                  </Card>
-                ))
-              ) : (
-                <Typography variant="body2" style={{ color: "white" }}>
-                  No applicants for this job yet.
-                  {console.log("no applicants")}
-                </Typography>
-              )}
+                    View Resume
+                  </a>
+                </Button>
+                <Button
+                  variant="contained"
+                  color="info"
+                  sx={{ margin: "10px" }}
+                  startIcon={<FaLinkedin />}
+                >
+                  <a
+                    href={applicant.LinkedInURL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none", color: "white"}}
+                  >
+                    LinkedIn
+                  </a>
+                </Button>
+              </Box>
+              <Box
+                sx={{
+                  marginTop: "10px",
+                  display: "flex",
+                  gap: "10px",
+                }}
+              >
+                <Button
+                  variant="contained"
+                  color="success"
+                  onClick={() =>
+                    updateStatus(applicant.id, "Accepted")
+                  }
+                >
+                  Accept
+                </Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={() =>
+                    updateStatus(applicant.id, "Rejected")
+                  }
+                  disabled={applicant.status === "Accepted"}
+                  sx={{
+                    display:
+                      applicant.status === "Accepted"
+                        ? "none"
+                        : "inline-block",
+                  }}
+                >
+                  Reject
+                </Button>
+                <IconButton
+                  color="primary"
+                  onClick={() => sendEmail(applicant.email)}
+                >
+                  <FaEnvelope />
+                </IconButton>
+              </Box>
             </CardContent>
           </Card>
         ))}

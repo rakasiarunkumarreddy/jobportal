@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f0f4f8;
+  /* background-color:rgb(15, 122, 230); */
   animation: fadeIn 1s ease-in-out;
 }
 
