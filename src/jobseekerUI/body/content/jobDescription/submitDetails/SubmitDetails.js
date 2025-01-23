@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { db1, ref, push, get } from '../../../../../firebase';
 import './submitDetails.css';
+import Header from "../../../../header/Header"
 
 const SubmitDetails = () => {
   const navigate = useNavigate();
@@ -74,6 +75,8 @@ const SubmitDetails = () => {
   };
 
   return (
+    <>
+    <Header/>
     <div className="submitDetails">
       <h1>Submit Details</h1>
       <form onSubmit={handleSubmit}>
@@ -129,6 +132,7 @@ const SubmitDetails = () => {
       </form>
       {showMessage && <div className="confirmationMessage">Form submitted successfully!</div>}
     </div>
+    </>
   );
 };
 

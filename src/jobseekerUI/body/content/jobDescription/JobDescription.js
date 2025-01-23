@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { db1, ref, get } from "../../../../firebase";
+import Header from "../../../header/Header"
 import "./jobDescription.css";
 
 const JobDescription = () => {
@@ -27,6 +28,8 @@ const JobDescription = () => {
   }
 
   return (
+    <>
+    <Header/>
     <div className="jobDescription">
       <div className="header">
         <h1>{jobDetails.jobTitle}</h1>
@@ -34,7 +37,11 @@ const JobDescription = () => {
           className="applyButton"
           onClick={() =>
             navigate(`/submit-details`, {
-              state: { jobTitle: jobDetails.jobTitle, companyName: jobDetails.companyName, postedBy: jobDetails.postedBy },
+              state: {
+                jobTitle: jobDetails.jobTitle,
+                companyName: jobDetails.companyName,
+                postedBy: jobDetails.postedBy,
+              },
             })
           }
         >
@@ -43,14 +50,15 @@ const JobDescription = () => {
       </div>
       <div>
         <p><strong>Company:</strong> {jobDetails.companyName}</p>
-        <p><strong>PostedBy:</strong> {jobDetails.postedBy}</p>
+        <p><strong>Posted By:</strong> {jobDetails.postedBy}</p>
         <p><strong>Description:</strong> {jobDetails.jobDescription}</p>
-        <p><strong>JobType:</strong> {jobDetails.jobType}</p>
+        <p><strong>Job Type:</strong> {jobDetails.jobType}</p>
         <p><strong>Location:</strong> {jobDetails.location}</p>
         <p><strong>Date:</strong> {jobDetails.postDate}</p>
         <p className="skills"><strong>Skills:</strong> {jobDetails.skills.join(', ')}</p>
       </div>
     </div>
+    </>
   );
 };
 

@@ -5,6 +5,8 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
+  max-width: 800px;
+  margin: 20px auto; /* Center the container */
 }
 
 .jobDescription .header {
@@ -12,7 +14,6 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
-  background-color: #007bff;
 }
 
 .jobDescription h1 {
@@ -22,7 +23,7 @@
 }
 
 .applyButton {
-  background-color: rgb(9, 9, 10);
+  background-color: #007bff;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -39,57 +40,50 @@
   margin: 10px 0;
 }
 
-
-.skills{
-  width:1000px;
-  overflow:auto
+.skills {
+  width: 100%;
+  overflow: auto;
 }
 
-@media (max-width:768px){
-  .skills{
-    width:400px;
-    overflow:auto
+@media (max-width: 768px) {
+  .skills {
+    width: 100%;
   }
 }
 
 @media (max-width: 430px) {
-  
-  .skills{
-    width:400px;
-    overflow:auto
+  .jobDescription {
+    width: 100%;
   }
-  .jobDescription{
-    width:100%%
+  .skills {
+    width: 100%;
   }
 }
-
 
 @media (max-width: 380px) {
   .header {
     width: 100%;
-    max-width:1000px
+    flex-direction: column;
+    align-items: flex-start;
   }
-  .skills{
-    width:330px;
-    overflow:auto
+  .skills {
+    width: 100%;
   }
-  .jobDescription{
-    width:100%
+  .jobDescription {
+    width: 100%;
   }
 }
 
 @media (max-width: 320px) {
- 
   .header {
     width: 100%;
-    max-width:1000px;
+    flex-direction: column;
+    align-items: flex-start;
   }
-    .skills{
-      width:300px;
-      overflow:auto
-    }
-    .jobDescription{
-      width:100%%
-    }
-  
+  .skills {
+    width: 100%;
+  }
+  .jobDescription {
+    width: 100%;
+  }
 }
