@@ -3,7 +3,7 @@ import "./Alert.css";
 
 const Alert = ({ message, onClose }) => {
   useEffect(() => {
-    const timer = setTimeout(onClose, 3000); // Auto-close the alert after 3 seconds
+    const timer = setTimeout(onClose, 500); // Auto-close the alert after 3 seconds
     return () => clearTimeout(timer);
   }, [onClose]);
 
